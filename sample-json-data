@@ -1,0 +1,2486 @@
+//SECTION - Project
+// https://salsa.debian.org/api/v4/projects/9695
+
+{
+  "id": 9695,
+  "description": "Give grep some Debian love",
+  "name": "grep",
+  "name_with_namespace": "Debian / grep",
+  "path": "grep",
+  "path_with_namespace": "debian/grep",
+  "created_at": "2018-02-07T14:40:13.232Z",
+  "default_branch": "debian/master",
+  "tag_list": [],
+  "topics": [],
+  "ssh_url_to_repo": "git@salsa.debian.org:debian/grep.git",
+  "http_url_to_repo": "https://salsa.debian.org/debian/grep.git",
+  "web_url": "https://salsa.debian.org/debian/grep",
+  "readme_url": "https://salsa.debian.org/debian/grep/-/blob/debian/master/README",
+  "forks_count": 7,
+  "avatar_url": null,
+  "star_count": 1,
+  "last_activity_at": "2025-04-18T01:55:30.074Z",
+  "namespace": {
+    "id": 2,
+    "name": "Debian",
+    "path": "debian",
+    "kind": "group",
+    "full_path": "debian",
+    "parent_id": null,
+    "avatar_url": "/uploads/-/system/group/avatar/2/debian.png",
+    "web_url": "https://salsa.debian.org/groups/debian"
+  },
+  "container_registry_image_prefix": "registry.salsa.debian.org/debian/grep",
+  "_links": {
+    "self": "https://salsa.debian.org/api/v4/projects/9695",
+    "merge_requests": "https://salsa.debian.org/api/v4/projects/9695/merge_requests",
+    "repo_branches": "https://salsa.debian.org/api/v4/projects/9695/repository/branches",
+    "labels": "https://salsa.debian.org/api/v4/projects/9695/labels",
+    "events": "https://salsa.debian.org/api/v4/projects/9695/events",
+    "members": "https://salsa.debian.org/api/v4/projects/9695/members",
+    "cluster_agents": "https://salsa.debian.org/api/v4/projects/9695/cluster_agents"
+  },
+  "packages_enabled": null,
+  "empty_repo": false,
+  "archived": false,
+  "visibility": "public",
+  "resolve_outdated_diff_discussions": false,
+  "repository_object_format": "sha1",
+  "issues_enabled": false,
+  "merge_requests_enabled": true,
+  "wiki_enabled": false,
+  "jobs_enabled": true,
+  "snippets_enabled": true,
+  "container_registry_enabled": true,
+  "service_desk_enabled": true,
+  "can_create_merge_request_in": true,
+  "issues_access_level": "disabled",
+  "repository_access_level": "enabled",
+  "merge_requests_access_level": "enabled",
+  "forking_access_level": "enabled",
+  "wiki_access_level": "disabled",
+  "builds_access_level": "enabled",
+  "snippets_access_level": "enabled",
+  "pages_access_level": "enabled",
+  "analytics_access_level": "enabled",
+  "container_registry_access_level": "enabled",
+  "security_and_compliance_access_level": "private",
+  "releases_access_level": "enabled",
+  "environments_access_level": "enabled",
+  "feature_flags_access_level": "enabled",
+  "infrastructure_access_level": "enabled",
+  "monitor_access_level": "enabled",
+  "model_experiments_access_level": "enabled",
+  "model_registry_access_level": "enabled",
+  "emails_disabled": false,
+  "emails_enabled": true,
+  "shared_runners_enabled": true,
+  "lfs_enabled": false,
+  "creator_id": 1335,
+  "import_status": "finished",
+  "description_html": "\u003Cp data-sourcepos=\"1:1-1:26\" dir=\"auto\"\u003EGive grep some Debian love\u003C/p\u003E",
+  "updated_at": "2025-04-18T01:55:30.074Z",
+  "ci_config_path": "debian/salsa-ci.yml",
+  "public_jobs": true,
+  "shared_with_groups": [],
+  "only_allow_merge_if_pipeline_succeeds": false,
+  "allow_merge_on_skipped_pipeline": false,
+  "request_access_enabled": false,
+  "only_allow_merge_if_all_discussions_are_resolved": false,
+  "remove_source_branch_after_merge": false,
+  "printing_merge_request_link_enabled": true,
+  "merge_method": "rebase_merge",
+  "squash_option": "default_off",
+  "enforce_auth_checks_on_uploads": true,
+  "suggestion_commit_message": "",
+  "merge_commit_template": null,
+  "squash_commit_template": null,
+  "issue_branch_template": null,
+  "warn_about_potentially_unwanted_characters": true,
+  "autoclose_referenced_issues": false,
+  "max_artifacts_size": null,
+  "permissions": {
+    "project_access": null,
+    "group_access": null
+  }
+}
+
+
+//SECTION - All pipelines
+// https://salsa.debian.org/api/v4/projects/9695/pipelines/
+
+[
+  {
+    "id": 789018,
+    "iid": 89,
+    "project_id": 9695,
+    "sha": "efc0c7c24a76514b542b25fc0e75b34641c5d05e",
+    "ref": "salsa-ci/debian/bookworm-backports",
+    "status": "failed",
+    "source": "push",
+    "created_at": "2024-12-30T21:00:56.503Z",
+    "updated_at": "2024-12-30T21:14:49.950Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/789018",
+    "name": null
+  },
+  {
+    "id": 789011,
+    "iid": 88,
+    "project_id": 9695,
+    "sha": "cba6f77fba8334c107a3dc708c50ff8d5e8553e7",
+    "ref": "salsa-ci/debian/experimental",
+    "status": "failed",
+    "source": "push",
+    "created_at": "2024-12-30T20:29:03.798Z",
+    "updated_at": "2024-12-30T20:42:26.673Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/789011",
+    "name": null
+  },
+  {
+    "id": 759928,
+    "iid": 87,
+    "project_id": 9695,
+    "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "web",
+    "created_at": "2024-11-09T11:35:45.703Z",
+    "updated_at": "2024-11-09T11:50:13.930Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928",
+    "name": null
+  },
+  {
+    "id": 751282,
+    "iid": 86,
+    "project_id": 9695,
+    "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-10-22T22:39:18.951Z",
+    "updated_at": "2024-10-22T22:52:32.317Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/751282",
+    "name": null
+  },
+  {
+    "id": 751268,
+    "iid": 85,
+    "project_id": 9695,
+    "sha": "318079ec1ced60808f4fd17c89e3e71d8c0e038f",
+    "ref": "merge-3.11-4",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-10-22T22:05:06.104Z",
+    "updated_at": "2024-10-22T22:17:43.947Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/751268",
+    "name": null
+  },
+  {
+    "id": 736091,
+    "iid": 84,
+    "project_id": 9695,
+    "sha": "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-09-23T14:03:26.099Z",
+    "updated_at": "2024-09-23T14:18:14.870Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/736091",
+    "name": null
+  },
+  {
+    "id": 674870,
+    "iid": 83,
+    "project_id": 9695,
+    "sha": "7a47d7c610056e2e35036c7b8b926ed5d0f7f2be",
+    "ref": "debian/bookworm",
+    "status": "success",
+    "source": "web",
+    "created_at": "2024-05-07T09:55:20.560Z",
+    "updated_at": "2024-05-07T10:10:22.935Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/674870",
+    "name": null
+  },
+  {
+    "id": 652052,
+    "iid": 82,
+    "project_id": 9695,
+    "sha": "6a1f01528352310003a6a81184a83ae5ae6a9a95",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-03-13T17:44:07.368Z",
+    "updated_at": "2024-03-13T17:56:24.367Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/652052",
+    "name": null
+  },
+  {
+    "id": 652051,
+    "iid": 81,
+    "project_id": 9695,
+    "sha": "4a67a72497afbda26ed6c6fd4583c549810869e5",
+    "ref": "wrap-and-sort",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-03-13T17:31:43.927Z",
+    "updated_at": "2024-03-13T17:44:01.577Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/652051",
+    "name": null
+  },
+  {
+    "id": 652047,
+    "iid": 80,
+    "project_id": 9695,
+    "sha": "be0243e401b60bc93a70dde7af0d8bce510e9b24",
+    "ref": "wrap-and-sort",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-03-13T17:24:18.711Z",
+    "updated_at": "2024-03-13T17:36:51.889Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/652047",
+    "name": null
+  },
+  {
+    "id": 649483,
+    "iid": 79,
+    "project_id": 9695,
+    "sha": "d5f0492ce84fe920badadc9377e2eb1565b36a56",
+    "ref": "debian/master",
+    "status": "failed",
+    "source": "web",
+    "created_at": "2024-03-07T13:49:05.805Z",
+    "updated_at": "2024-03-07T14:00:13.088Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/649483",
+    "name": null
+  },
+  {
+    "id": 649481,
+    "iid": 78,
+    "project_id": 9695,
+    "sha": "d5f0492ce84fe920badadc9377e2eb1565b36a56",
+    "ref": "debian/master",
+    "status": "failed",
+    "source": "web",
+    "created_at": "2024-03-07T13:43:47.798Z",
+    "updated_at": "2024-03-07T13:55:42.377Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/649481",
+    "name": null
+  },
+  {
+    "id": 621496,
+    "iid": 77,
+    "project_id": 9695,
+    "sha": "3eb401bb389f939fd5a0d46044c1e1d09419c22f",
+    "ref": "debian/usr-merge",
+    "status": "success",
+    "source": "push",
+    "created_at": "2024-01-04T14:30:46.271Z",
+    "updated_at": "2024-02-14T15:08:58.347Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/621496",
+    "name": null
+  },
+  {
+    "id": 621442,
+    "iid": 76,
+    "project_id": 9695,
+    "sha": "ce73dbfb781549dfe30a8264ad2f7bc20bd0bee0",
+    "ref": "debian/usr-merge",
+    "status": "failed",
+    "source": "push",
+    "created_at": "2024-01-04T12:44:53.777Z",
+    "updated_at": "2024-01-04T14:00:06.993Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/621442",
+    "name": null
+  },
+  {
+    "id": 605156,
+    "iid": 75,
+    "project_id": 9695,
+    "sha": "d7006cea8ee4ce144dda878185866039ca976939",
+    "ref": "debian/experimental",
+    "status": "success",
+    "source": "push",
+    "created_at": "2023-11-23T16:12:57.203Z",
+    "updated_at": "2023-11-23T16:23:44.683Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/605156",
+    "name": null
+  },
+  {
+    "id": 605148,
+    "iid": 74,
+    "project_id": 9695,
+    "sha": "ed27ccaa6e3ebe98ddb8fcc88b6eb2ed1bb3a300",
+    "ref": "debian/experimental",
+    "status": "success",
+    "source": "push",
+    "created_at": "2023-11-23T15:48:56.946Z",
+    "updated_at": "2023-11-23T15:58:37.202Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/605148",
+    "name": null
+  },
+  {
+    "id": 605117,
+    "iid": 73,
+    "project_id": 9695,
+    "sha": "f0e4dd0eb87e48ccf5cce2b12d2bc329375e3b20",
+    "ref": "debian/experimental",
+    "status": "success",
+    "source": "push",
+    "created_at": "2023-11-23T14:27:20.420Z",
+    "updated_at": "2023-11-23T14:39:39.997Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/605117",
+    "name": null
+  },
+  {
+    "id": 576674,
+    "iid": 72,
+    "project_id": 9695,
+    "sha": "d5f0492ce84fe920badadc9377e2eb1565b36a56",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "web",
+    "created_at": "2023-09-07T12:58:57.555Z",
+    "updated_at": "2023-09-07T13:12:16.036Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/576674",
+    "name": null
+  },
+  {
+    "id": 568627,
+    "iid": 71,
+    "project_id": 9695,
+    "sha": "d5f0492ce84fe920badadc9377e2eb1565b36a56",
+    "ref": "debian/master",
+    "status": "success",
+    "source": "push",
+    "created_at": "2023-08-22T18:06:56.154Z",
+    "updated_at": "2023-08-22T18:21:57.653Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/568627",
+    "name": null
+  },
+  {
+    "id": 568623,
+    "iid": 70,
+    "project_id": 9695,
+    "sha": "29838ef4ce168405c305088f9a89576156cc273a",
+    "ref": "1050294-fix-build-twice",
+    "status": "success",
+    "source": "push",
+    "created_at": "2023-08-22T17:50:09.896Z",
+    "updated_at": "2023-08-22T18:04:57.726Z",
+    "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/568623",
+    "name": null
+  }
+]
+
+
+//SECTION - Single pipeline
+// https://salsa.debian.org/api/v4/projects/9695/pipelines/759928/
+
+{
+  "id": 759928,
+  "iid": 87,
+  "project_id": 9695,
+  "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+  "ref": "debian/master",
+  "status": "success",
+  "source": "web",
+  "created_at": "2024-11-09T11:35:45.703Z",
+  "updated_at": "2024-11-09T11:50:13.930Z",
+  "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928",
+  "before_sha": "0000000000000000000000000000000000000000",
+  "tag": false,
+  "yaml_errors": null,
+  "user": {
+    "id": 1335,
+    "username": "santiago",
+    "name": "Santiago R.R.",
+    "state": "active",
+    "locked": false,
+    "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+    "web_url": "https://salsa.debian.org/santiago"
+  },
+  "started_at": "2024-11-09T11:35:47.446Z",
+  "finished_at": "2024-11-09T11:50:13.921Z",
+  "committed_at": null,
+  "duration": 863,
+  "queued_duration": 1,
+  "coverage": null,
+  "detailed_status": {
+    "icon": "status_warning",
+    "text": "Warning",
+    "label": "passed with warnings",
+    "group": "success-with-warnings",
+    "tooltip": "passed",
+    "has_details": true,
+    "details_path": "/debian/grep/-/pipelines/759928",
+    "illustration": null,
+    "favicon": "/assets/ci_favicons/favicon_status_success-8451333011eee8ce9f2ab25dc487fe24a8758c694827a582f17f42b0a90446a2.png"
+  },
+  "name": null
+}
+
+
+//SECTION - All jobs in a pipeline
+// https://salsa.debian.org/api/v4/projects/9695/pipelines/759928/jobs
+
+[
+  {
+    "id": 6561779,
+    "status": "success",
+    "stage": "test",
+    "name": "wrap-and-sort",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.795Z",
+    "started_at": "2024-11-09T11:42:37.048Z",
+    "finished_at": "2024-11-09T11:44:13.116Z",
+    "erased_at": null,
+    "duration": 96.068118,
+    "queued_duration": 275.007125,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561779",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 35421,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561778,
+    "status": "success",
+    "stage": "test",
+    "name": "piuparts",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.791Z",
+    "started_at": "2024-11-09T11:46:54.407Z",
+    "finished_at": "2024-11-09T11:49:44.367Z",
+    "erased_at": null,
+    "duration": 169.960291,
+    "queued_duration": 256.924675,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561778",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 77100,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561777,
+    "status": "success",
+    "stage": "test",
+    "name": "blhc",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.786Z",
+    "started_at": "2024-11-09T11:46:35.206Z",
+    "finished_at": "2024-11-09T11:48:07.083Z",
+    "erased_at": null,
+    "duration": 91.877621,
+    "queued_duration": 237.866453,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561777",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 3227,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561776,
+    "status": "success",
+    "stage": "test",
+    "name": "autopkgtest",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.781Z",
+    "started_at": "2024-11-09T11:44:42.210Z",
+    "finished_at": "2024-11-09T11:49:58.849Z",
+    "erased_at": null,
+    "duration": 316.639181,
+    "queued_duration": 125.106601,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561776",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 235326,
+        "filename": "job.log",
+        "file_format": null
+      },
+      {
+        "file_type": "archive",
+        "size": 490554,
+        "filename": "artifacts.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 685,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:49:57.754Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561775,
+    "status": "success",
+    "stage": "test",
+    "name": "lintian",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.776Z",
+    "started_at": "2024-11-09T11:44:13.218Z",
+    "finished_at": "2024-11-09T11:46:27.366Z",
+    "erased_at": null,
+    "duration": 134.147994,
+    "queued_duration": 95.525997,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561775",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 3785,
+        "filename": "artifacts.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 199,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "junit",
+        "size": 408,
+        "filename": "junit.xml.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 6931,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:46:26.235Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561774,
+    "status": "success",
+    "stage": "test",
+    "name": "reprotest",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.767Z",
+    "started_at": "2024-11-09T11:43:38.212Z",
+    "finished_at": "2024-11-09T11:50:13.823Z",
+    "erased_at": null,
+    "duration": 395.611282,
+    "queued_duration": 60.603607,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561774",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 1011266,
+        "filename": "job.log",
+        "file_format": null
+      },
+      {
+        "file_type": "archive",
+        "size": 811978,
+        "filename": "reprotest_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 438,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:50:12.337Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561773,
+    "status": "failed",
+    "stage": "test",
+    "name": "test-crossbuild-arm64",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": true,
+    "created_at": "2024-11-09T11:35:45.763Z",
+    "started_at": "2024-11-09T11:46:27.441Z",
+    "finished_at": "2024-11-09T11:48:51.888Z",
+    "erased_at": null,
+    "duration": 144.446929,
+    "queued_duration": 98.046927,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "failure_reason": "script_failure",
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561773",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 55588,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:48:50.539Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561772,
+    "status": "success",
+    "stage": "test",
+    "name": "test-build-all",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.759Z",
+    "started_at": "2024-11-09T11:46:20.635Z",
+    "finished_at": "2024-11-09T11:47:50.855Z",
+    "erased_at": null,
+    "duration": 90.21925,
+    "queued_duration": 91.272184,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561772",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "trace",
+        "size": 5844,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561771,
+    "status": "success",
+    "stage": "test",
+    "name": "test-build-any",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.755Z",
+    "started_at": "2024-11-09T11:46:12.589Z",
+    "finished_at": "2024-11-09T11:49:49.440Z",
+    "erased_at": null,
+    "duration": 216.851269,
+    "queued_duration": 83.314199,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561771",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 539301,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:49:47.899Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561770,
+    "status": "success",
+    "stage": "build",
+    "name": "build source",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.748Z",
+    "started_at": "2024-11-09T11:39:19.550Z",
+    "finished_at": "2024-11-09T11:41:31.938Z",
+    "erased_at": null,
+    "duration": 132.388044,
+    "queued_duration": 77.595636,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561770",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "archive",
+        "size": 1731403,
+        "filename": "build-source_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 439,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 64662,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:41:30.614Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561769,
+    "status": "success",
+    "stage": "build",
+    "name": "build arm64",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.742Z",
+    "started_at": "2024-11-09T11:38:04.720Z",
+    "finished_at": "2024-11-09T11:44:24.935Z",
+    "erased_at": null,
+    "duration": 380.214996,
+    "queued_duration": 2.821669,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561769",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 543945,
+        "filename": "job.log",
+        "file_format": null
+      },
+      {
+        "file_type": "archive",
+        "size": 2189619,
+        "filename": "build-arm64_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 491,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      }
+    ],
+    "runner": {
+      "id": 364,
+      "description": "salsaci-arm64-runner-01.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": false,
+      "runner_type": "project_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 142,
+      "system_id": "s_b9dd37145b78",
+      "version": "17.4.0",
+      "revision": "HEAD",
+      "platform": "linux",
+      "architecture": "arm64",
+      "created_at": "2024-06-02T02:57:37.896Z",
+      "contacted_at": "2025-05-29T02:39:02.697Z",
+      "ip_address": "139.178.85.85",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:44:18.293Z",
+    "archived": true,
+    "tag_list": [
+      "arm64"
+    ]
+  },
+  {
+    "id": 6561768,
+    "status": "success",
+    "stage": "build",
+    "name": "build armhf",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.737Z",
+    "started_at": "2024-11-09T11:38:04.368Z",
+    "finished_at": "2024-11-09T11:44:15.186Z",
+    "erased_at": null,
+    "duration": 370.817878,
+    "queued_duration": 2.525853,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561768",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 2186377,
+        "filename": "build-armhf_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 491,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 547018,
+        "filename": "job.log",
+        "file_format": null
+      },
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      }
+    ],
+    "runner": {
+      "id": 364,
+      "description": "salsaci-arm64-runner-01.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": false,
+      "runner_type": "project_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 142,
+      "system_id": "s_b9dd37145b78",
+      "version": "17.4.0",
+      "revision": "HEAD",
+      "platform": "linux",
+      "architecture": "arm64",
+      "created_at": "2024-06-02T02:57:37.896Z",
+      "contacted_at": "2025-05-29T02:39:02.697Z",
+      "ip_address": "139.178.85.85",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:44:12.147Z",
+    "archived": true,
+    "tag_list": [
+      "arm64"
+    ]
+  },
+  {
+    "id": 6561767,
+    "status": "success",
+    "stage": "build",
+    "name": "build armel",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.733Z",
+    "started_at": "2024-11-09T11:38:03.960Z",
+    "finished_at": "2024-11-09T11:44:49.183Z",
+    "erased_at": null,
+    "duration": 405.223216,
+    "queued_duration": 2.218977,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561767",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 2186786,
+        "filename": "build-armel_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 495,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 545582,
+        "filename": "job.log",
+        "file_format": null
+      },
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      }
+    ],
+    "runner": {
+      "id": 364,
+      "description": "salsaci-arm64-runner-01.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": false,
+      "runner_type": "project_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 142,
+      "system_id": "s_b9dd37145b78",
+      "version": "17.4.0",
+      "revision": "HEAD",
+      "platform": "linux",
+      "architecture": "arm64",
+      "created_at": "2024-06-02T02:57:37.896Z",
+      "contacted_at": "2025-05-29T02:39:02.697Z",
+      "ip_address": "139.178.85.85",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:44:45.546Z",
+    "archived": true,
+    "tag_list": [
+      "arm64"
+    ]
+  },
+  {
+    "id": 6561766,
+    "status": "success",
+    "stage": "build",
+    "name": "build i386",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.728Z",
+    "started_at": "2024-11-09T11:38:30.925Z",
+    "finished_at": "2024-11-09T11:43:38.113Z",
+    "erased_at": null,
+    "duration": 307.188089,
+    "queued_duration": 29.252055,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561766",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 2205034,
+        "filename": "build-i386_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 493,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 515701,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:43:36.669Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561765,
+    "status": "success",
+    "stage": "build",
+    "name": "build",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.723Z",
+    "started_at": "2024-11-09T11:38:15.240Z",
+    "finished_at": "2024-11-09T11:42:36.976Z",
+    "erased_at": null,
+    "duration": 261.735754,
+    "queued_duration": 13.708235,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561765",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 2197182,
+        "filename": "build_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 496,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 537735,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:42:35.498Z",
+    "archived": true,
+    "tag_list": []
+  },
+  {
+    "id": 6561764,
+    "status": "success",
+    "stage": "provisioning",
+    "name": "extract-source",
+    "ref": "debian/master",
+    "tag": false,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2024-11-09T11:35:45.713Z",
+    "started_at": "2024-11-09T11:35:47.306Z",
+    "finished_at": "2024-11-09T11:38:01.442Z",
+    "erased_at": null,
+    "duration": 134.135684,
+    "queued_duration": 1.100675,
+    "user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago",
+      "created_at": "2017-12-17T13:17:29.844Z",
+      "bio": "",
+      "location": "",
+      "public_email": "",
+      "skype": "",
+      "linkedin": "",
+      "twitter": "",
+      "discord": "",
+      "website_url": "",
+      "organization": "",
+      "job_title": "",
+      "pronouns": "",
+      "bot": false,
+      "work_information": null,
+      "followers": 5,
+      "following": 0,
+      "local_time": "12:01 AM"
+    },
+    "commit": {
+      "id": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "short_id": "9f6e7014",
+      "created_at": "2024-10-22T22:39:17.000+00:00",
+      "parent_ids": [
+        "ea42f3a2b94ff67c4f0baff4c6407d780250b882",
+        "318079ec1ced60808f4fd17c89e3e71d8c0e038f"
+      ],
+      "title": "Merge branch 'merge-3.11-4' into 'debian/master'",
+      "message": "Merge branch 'merge-3.11-4' into 'debian/master'\n\nUpdate debian/master with debian/3.11-4\n\nSee merge request debian/grep!16",
+      "author_name": "Santiago R.R.",
+      "author_email": "santiago@debian.org",
+      "authored_date": "2024-10-22T22:39:17.000+00:00",
+      "committer_name": "Santiago R.R.",
+      "committer_email": "santiago@debian.org",
+      "committed_date": "2024-10-22T22:39:17.000+00:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/grep/-/commit/9f6e70143249f6c92fb7158a74d288332e132df4"
+    },
+    "pipeline": {
+      "id": 759928,
+      "iid": 87,
+      "project_id": 9695,
+      "sha": "9f6e70143249f6c92fb7158a74d288332e132df4",
+      "ref": "debian/master",
+      "status": "success",
+      "source": "web",
+      "created_at": "2024-11-09T11:35:45.703Z",
+      "updated_at": "2024-11-09T11:50:13.930Z",
+      "web_url": "https://salsa.debian.org/debian/grep/-/pipelines/759928"
+    },
+    "web_url": "https://salsa.debian.org/debian/grep/-/jobs/6561764",
+    "project": {
+      "ci_job_token_scope_enabled": false
+    },
+    "artifacts": [
+      {
+        "file_type": "archive",
+        "size": 5658076,
+        "filename": "extract-source_debian-master.zip",
+        "file_format": "zip"
+      },
+      {
+        "file_type": "metadata",
+        "size": 28807,
+        "filename": "metadata.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "dotenv",
+        "size": 82,
+        "filename": ".env.gz",
+        "file_format": "gzip"
+      },
+      {
+        "file_type": "trace",
+        "size": 15073,
+        "filename": "job.log",
+        "file_format": null
+      }
+    ],
+    "runner": {
+      "id": 82,
+      "description": "salsa-runner.debian.net",
+      "ip_address": null,
+      "active": true,
+      "paused": false,
+      "is_shared": true,
+      "runner_type": "instance_type",
+      "name": "gitlab-runner",
+      "online": true,
+      "status": "online"
+    },
+    "runner_manager": {
+      "id": 2,
+      "system_id": "s_5385d57c9472",
+      "version": "17.9.3",
+      "revision": "f6927248",
+      "platform": "linux",
+      "architecture": "amd64",
+      "created_at": "2023-05-09T20:14:01.961Z",
+      "contacted_at": "2025-05-29T03:01:43.016Z",
+      "ip_address": "34.168.56.35",
+      "status": "online"
+    },
+    "artifacts_expire_at": "2024-12-09T11:38:00.156Z",
+    "archived": true,
+    "tag_list": []
+  }
+]
