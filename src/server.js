@@ -5,7 +5,6 @@ import pipelinesRoute from './routes/pipelinesRoute.js';
 import jobsRoute from './routes/jobsRoute.js';
 import packagesRoute from './routes/packagesRoute.js';
 import pipelineUpdater from './cron/pipelineUpdater.js';
-import keepAlive from './cron/keepAlive.js';
 
 const app = express();
 
@@ -28,7 +27,6 @@ app.get('/', (_req, res) => {
 
 // Start the cron jobs
 pipelineUpdater.startPipelineUpdateCron();
-keepAlive.startKeepAliveCron();
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
