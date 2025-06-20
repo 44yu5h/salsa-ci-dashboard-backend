@@ -4,7 +4,7 @@ import cors from 'cors';
 import pipelinesRoute from './routes/pipelinesRoute.js';
 import jobsRoute from './routes/jobsRoute.js';
 import packagesRoute from './routes/packagesRoute.js';
-import pipelineUpdater from './cron/pipelineUpdater.js';
+import startPipelineUpdateCron from './cron/pipelineUpdater.js';
 
 const app = express();
 
@@ -25,8 +25,8 @@ app.get('/', (_req, res) => {
   res.status(200).send('Server is functioning properly!');
 });
 
-// Start the cron jobs
-pipelineUpdater.startPipelineUpdateCron();
+// Start the cron job(s)
+startPipelineUpdateCron();
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

@@ -116,7 +116,7 @@ const updatePipelineStatus = async (req, res) => {
 // Check pending pipelines // this is called by the cron job
 const checkPendingPipelines = async () => {
   try {
-    console.log('Starting pipeline status check...');
+    console.log('Starting pipeline status check at ', new Date().toISOString());
     // Get all pipelines with 'created' status only
     const pendingPipelines = await pipelineModel.getByStatus('created');
     console.log(`Found ${pendingPipelines.length} pending pipelines to check`);
