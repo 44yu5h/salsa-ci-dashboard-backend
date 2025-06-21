@@ -2484,3 +2484,273 @@
     "tag_list": []
   }
 ]
+
+
+// SECTION - Merge Requests
+// https://salsa.debian.org/api/v4/projects/27916/merge_requests?state=merged&per_page=2&page=1
+// Get number of pages from headers: curl -I "https://salsa.debian.org/api/v4/projects/27916/merge_requests?state=merged&per_page=100"
+
+[
+  {
+    "id": 80003,
+    "iid": 614,
+    "project_id": 27916,
+    "title": "salsa-ci: add variable to customize the +salsaci suffix in version bump",
+    "description": "SALSA_CI_VERSION_BUMP_VENDOR_NAME allows one to change the default\n+salsaci name used in the automatic version bump done in the CI.\n\nExample of a run with default settings: https://salsa.debian.org/charles/trurl/-/jobs/7719394#L1515\n\n```bash\n[...]\ndpkg-deb: building package 'trurl' in '../trurl_0.16.1-1+salsaci+20250616+23_amd64.deb'.\n dpkg-genbuildinfo --build=full -O../trurl_0.16.1-1+salsaci+20250616+23_amd64.buildinfo\n dpkg-genchanges --build=full -O../trurl_0.16.1-1+salsaci+20250616+23_amd64.changes\n[...]\n```\n\nExample of a run with `charlesci` in `SALSA_CI_VERSION_BUMP_VENDOR_NAME`: https://salsa.debian.org/charles/trurl/-/jobs/7719406#L1515\n\n```bash\n[...]\ndpkg-deb: building package 'trurl' in '../trurl_0.16.1-1+charlesci+20250616+22_amd64.deb'.\n dpkg-genbuildinfo --build=full -O../trurl_0.16.1-1+charlesci+20250616+22_amd64.buildinfo\n dpkg-genchanges --build=full -O../trurl_0.16.1-1+charlesci+20250616+22_amd64.changes\n[...]\n```\n\nCloses: #450",
+    "state": "merged",
+    "created_at": "2025-06-16T16:55:04.784Z",
+    "updated_at": "2025-06-17T19:46:43.986Z",
+    "merged_by": {
+      "id": 1840,
+      "username": "otto",
+      "name": "Otto Kekäläinen",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/9a1fa3b9b94f1d45efd9ff30963d2bbf430e7b39d873245170f73bf30766d9bb?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/otto"
+    },
+    "merge_user": {
+      "id": 1840,
+      "username": "otto",
+      "name": "Otto Kekäläinen",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/9a1fa3b9b94f1d45efd9ff30963d2bbf430e7b39d873245170f73bf30766d9bb?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/otto"
+    },
+    "merged_at": "2025-06-17T19:45:35.797Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "feature/450-customize-vendor-name-in-ci-version-bump",
+    "user_notes_count": 8,
+    "upvotes": 1,
+    "downvotes": 0,
+    "author": {
+      "id": 7354,
+      "username": "charles",
+      "name": "Carlos Henrique Lima Melara",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://salsa.debian.org/uploads/-/system/user/avatar/7354/avatar.png",
+      "web_url": "https://salsa.debian.org/charles"
+    },
+    "assignees": [],
+    "assignee": null,
+    "reviewers": [],
+    "source_project_id": 101054,
+    "target_project_id": 27916,
+    "labels": [],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "0587df5a3ee35547f5aa6f895956993989f71939",
+    "merge_commit_sha": "fe49b630f4f72eae184f43a910d8475e3e5aed95",
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": true,
+    "prepared_at": "2025-06-16T16:55:09.676Z",
+    "allow_collaboration": true,
+    "allow_maintainer_to_push": true,
+    "reference": "!614",
+    "references": {
+      "short": "!614",
+      "relative": "!614",
+      "full": "salsa-ci-team/pipeline!614"
+    },
+    "web_url": "https://salsa.debian.org/salsa-ci-team/pipeline/-/merge_requests/614",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": false,
+    "squash_on_merge": false,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true
+  },
+  {
+    "id": 78919,
+    "iid": 608,
+    "project_id": 27916,
+    "title": "Temporarily disable riscv64 jobs until new runners are fully operational",
+    "description": "Failing riscv64 builds are currently blocking the CI of Salsa itself at\nhttps://salsa.debian.org/salsa-ci-team/pipeline/-/pipelines and needs to\nbe disable to unblock further Salsa CI development.\n\nThis commit is easy to revert at a later time when new runners are ready.\n\nRelated: #436",
+    "state": "merged",
+    "created_at": "2025-04-28T19:21:15.418Z",
+    "updated_at": "2025-04-30T03:56:54.688Z",
+    "merged_by": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago"
+    },
+    "merge_user": {
+      "id": 1335,
+      "username": "santiago",
+      "name": "Santiago R.R.",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/santiago"
+    },
+    "merged_at": "2025-04-30T03:56:54.765Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "temp-disable-riscv64",
+    "user_notes_count": 11,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 1840,
+      "username": "otto",
+      "name": "Otto Kekäläinen",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/9a1fa3b9b94f1d45efd9ff30963d2bbf430e7b39d873245170f73bf30766d9bb?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/otto"
+    },
+    "assignees": [
+      {
+        "id": 1840,
+        "username": "otto",
+        "name": "Otto Kekäläinen",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://seccdn.libravatar.org/avatar/9a1fa3b9b94f1d45efd9ff30963d2bbf430e7b39d873245170f73bf30766d9bb?s=80&d=identicon&gravatarproxy=n",
+        "web_url": "https://salsa.debian.org/otto"
+      }
+    ],
+    "assignee": {
+      "id": 1840,
+      "username": "otto",
+      "name": "Otto Kekäläinen",
+      "state": "active",
+      "locked": false,
+      "avatar_url": "https://seccdn.libravatar.org/avatar/9a1fa3b9b94f1d45efd9ff30963d2bbf430e7b39d873245170f73bf30766d9bb?s=80&d=identicon&gravatarproxy=n",
+      "web_url": "https://salsa.debian.org/otto"
+    },
+    "reviewers": [
+      {
+        "id": 1335,
+        "username": "santiago",
+        "name": "Santiago R.R.",
+        "state": "active",
+        "locked": false,
+        "avatar_url": "https://seccdn.libravatar.org/avatar/a29862543876f8b73cacccb4eaba60c708e11f5527e5a67091def261949be038?s=80&d=identicon&gravatarproxy=n",
+        "web_url": "https://salsa.debian.org/santiago"
+      }
+    ],
+    "source_project_id": 35390,
+    "target_project_id": 27916,
+    "labels": [],
+    "draft": false,
+    "imported": false,
+    "imported_from": "none",
+    "work_in_progress": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": false,
+    "merge_status": "can_be_merged",
+    "detailed_merge_status": "not_open",
+    "merge_after": null,
+    "sha": "af23ada107a1d7b7c6b4fa9e498eb873bd6aa401",
+    "merge_commit_sha": "ebe55f44537f819c8fcc80b4abc3e0d5907cef52",
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": null,
+    "force_remove_source_branch": false,
+    "prepared_at": "2025-04-28T19:21:21.297Z",
+    "allow_collaboration": true,
+    "allow_maintainer_to_push": true,
+    "reference": "!608",
+    "references": {
+      "short": "!608",
+      "relative": "!608",
+      "full": "salsa-ci-team/pipeline!608"
+    },
+    "web_url": "https://salsa.debian.org/salsa-ci-team/pipeline/-/merge_requests/608",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": false,
+    "squash_on_merge": false,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true
+  }
+]
+
+
+// SECTION - Commits
+// https://salsa.debian.org/api/v4/projects/27916/repository/commits
+
+[
+  {
+    "id": "fe49b630f4f72eae184f43a910d8475e3e5aed95",
+    "short_id": "fe49b630",
+    "created_at": "2025-06-17T19:45:34.000+00:00",
+    "parent_ids": [
+      "8612b7071ce4f5c1f6ae1ba2ebc9ff82c83f1eac",
+      "0587df5a3ee35547f5aa6f895956993989f71939"
+    ],
+    "title": "Merge branch 'feature/450-customize-vendor-name-in-ci-version-bump' into 'master'",
+    "message": "Merge branch 'feature/450-customize-vendor-name-in-ci-version-bump' into 'master'\n\nsalsa-ci: add variable to customize the +salsaci suffix in version bump\n\nCloses #450\n\nSee merge request salsa-ci-team/pipeline!614\n\nApproved-by: Santiago R.R. \u003Csantiago@debian.org\u003E",
+    "author_name": "Otto Kekäläinen",
+    "author_email": "otto@debian.org",
+    "authored_date": "2025-06-17T19:45:34.000+00:00",
+    "committer_name": "Otto Kekäläinen",
+    "committer_email": "otto@debian.org",
+    "committed_date": "2025-06-17T19:45:34.000+00:00",
+    "trailers": {
+
+    },
+    "extended_trailers": {
+
+    },
+    "web_url": "https://salsa.debian.org/salsa-ci-team/pipeline/-/commit/fe49b630f4f72eae184f43a910d8475e3e5aed95"
+  },
+  {
+    "id": "0587df5a3ee35547f5aa6f895956993989f71939",
+    "short_id": "0587df5a",
+    "created_at": "2025-06-16T16:38:17.000-03:00",
+    "parent_ids": [
+      "8612b7071ce4f5c1f6ae1ba2ebc9ff82c83f1eac"
+    ],
+    "title": "salsa-ci: add variable to customize the +salsaci suffix in version bump",
+    "message": "salsa-ci: add variable to customize the +salsaci suffix in version bump\n\nSALSA_CI_VERSION_BUMP_SUFFIX_NAME allows one to change the default\n+salsaci name used in the automatic version bump done in the CI.\n\nCloses: #450\n",
+    "author_name": "Carlos Henrique Lima Melara",
+    "author_email": "carlos.melara@luizalabs.com",
+    "authored_date": "2025-06-16T11:18:31.000-03:00",
+    "committer_name": "Carlos Henrique Lima Melara",
+    "committer_email": "charlesmelara@riseup.net",
+    "committed_date": "2025-06-16T16:38:17.000-03:00",
+    "trailers": {
+
+    },
+    "extended_trailers": {
+
+    },
+    "web_url": "https://salsa.debian.org/salsa-ci-team/pipeline/-/commit/0587df5a3ee35547f5aa6f895956993989f71939"
+  },
+]
