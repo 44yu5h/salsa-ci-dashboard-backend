@@ -49,3 +49,17 @@ CREATE TABLE jobs (
   CONSTRAINT fk_job_package FOREIGN KEY (project_id) REFERENCES packages(project_id),
   CONSTRAINT fk_job_pipeline FOREIGN KEY (pipeline_id) REFERENCES pipelines(pipeline_id)
 );
+
+-- Merge Requests table
+CREATE TABLE merge_requests (
+  iid INT PRIMARY KEY,
+  title TEXT,
+  description TEXT,
+  created_at DATETIME NOT NULL,
+  merged_at DATETIME NOT NULL,
+  user_notes_count INT,
+  author_id INT,
+  author_username VARCHAR(255),
+  author_name VARCHAR(255),
+  author_avatar_url TEXT
+);
