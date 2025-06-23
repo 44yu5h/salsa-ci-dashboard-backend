@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server",
+    "dev": "nodemon --ignore 'data' server",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:quotes": "eslint . --fix --rule \"quotes: [error, single]\""
