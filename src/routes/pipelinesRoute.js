@@ -17,4 +17,7 @@ router.get('/:pipelineId', pipelinesController.getPipeline);
 // update pipeline status
 router.patch('/:pipelineId/status', pipelinesController.updatePipelineStatus);
 
+// Manually trigger pending pipelines check
+router.post('/check-pending', pipelinesController.triggerPendingPipelinesCheck);
+
 export default router;

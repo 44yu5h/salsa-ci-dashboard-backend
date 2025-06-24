@@ -197,6 +197,17 @@ const checkPendingPipelines = async () => {
   }
 };
 
+// Manually trigger pending pipelines check
+const triggerPendingPipelinesCheck = async (req, res) => {
+  try {
+    await checkPendingPipelines();
+    res.status(200).json({ message: 'Finished checking pending pipelines' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 // Get all pipelines
 const getPipelinesList = async (req, res) => {
   try {
@@ -225,6 +236,7 @@ export default {
   getPipeline,
   updatePipelineStatus,
   checkPendingPipelines,
+  triggerPendingPipelinesCheck,
   getPipelinesList,
   getPipelinesByProject,
 };
