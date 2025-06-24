@@ -32,14 +32,25 @@ CREATE TABLE pipelines (
   CONSTRAINT fk_pipeline_package FOREIGN KEY (project_id) REFERENCES packages(project_id)
 );
 
+-- Job Types table
+CREATE TABLE job_types (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  origin ENUM('external', 'salsaci') DEFAULT 'external' NOT NULL,
+  stage VARCHAR(255) NULL,
+  description TEXT NULL,
+  is_critical BOOLEAN DEFAULT FALSE,
+  created_at DATETIME,
+  INDEX idx_job_types_name (name)
+);
+
 -- Jobs table
 CREATE TABLE jobs (
   id INT AUTO_INCREMENT PRIMARY KEY,
   job_id INT NOT NULL,
   pipeline_id INT NOT NULL,
   project_id INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  stage VARCHAR(100) NULL,
+  job_type_id INT NOT NULL,
   status VARCHAR(50) NOT NULL,
   started_at DATETIME NULL,
   finished_at DATETIME NULL,
@@ -47,7 +58,8 @@ CREATE TABLE jobs (
   web_url VARCHAR(255) NULL,
   runner_info TEXT NULL,
   CONSTRAINT fk_job_package FOREIGN KEY (project_id) REFERENCES packages(project_id),
-  CONSTRAINT fk_job_pipeline FOREIGN KEY (pipeline_id) REFERENCES pipelines(pipeline_id)
+  CONSTRAINT fk_job_pipeline FOREIGN KEY (pipeline_id) REFERENCES pipelines(pipeline_id),
+  CONSTRAINT fk_job_job_type FOREIGN KEY (job_type_id) REFERENCES job_types(id)
 );
 
 -- Merge Requests table
