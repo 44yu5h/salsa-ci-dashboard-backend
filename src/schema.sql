@@ -29,7 +29,7 @@ CREATE TABLE pipelines (
   ref VARCHAR(100) NULL,
   sha VARCHAR(100) NULL,
   user_id INT NULL,
-  CONSTRAINT fk_pipeline_package FOREIGN KEY (project_id) REFERENCES packages(project_id)
+  CONSTRAINT fk_pipeline_package FOREIGN KEY (project_id) REFERENCES packages(project_id) ON DELETE CASCADE
 );
 
 -- Job Types table
@@ -57,9 +57,9 @@ CREATE TABLE jobs (
   duration INT NULL,
   web_url VARCHAR(255) NULL,
   runner_info TEXT NULL,
-  CONSTRAINT fk_job_package FOREIGN KEY (project_id) REFERENCES packages(project_id),
-  CONSTRAINT fk_job_pipeline FOREIGN KEY (pipeline_id) REFERENCES pipelines(pipeline_id),
-  CONSTRAINT fk_job_job_type FOREIGN KEY (job_type_id) REFERENCES job_types(id)
+  CONSTRAINT fk_job_package FOREIGN KEY (project_id) REFERENCES packages(project_id) ON DELETE CASCADE,
+  CONSTRAINT fk_job_pipeline FOREIGN KEY (pipeline_id) REFERENCES pipelines(pipeline_id) ON DELETE CASCADE,
+  CONSTRAINT fk_job_job_type FOREIGN KEY (job_type_id) REFERENCES job_types(id) ON DELETE CASCADE
 );
 
 -- Merge Requests table
