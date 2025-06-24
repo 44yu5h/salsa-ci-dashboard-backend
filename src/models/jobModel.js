@@ -1,11 +1,12 @@
 import Joi from 'joi';
 import { pool } from '../config/db.js';
+import * as jobTypesModel from './jobTypesModel.js';
 
 // Job validation schema
 export const jobSchema = Joi.object({
   pipeline_id: Joi.number().required(),
   project_id: Joi.number().allow(null),
-  name: Joi.string().required(),
+  job_type_id: Joi.number().required(),
   status: Joi.string()
     .valid('created', 'running', 'success', 'failed', 'skipped', 'manual')
     .required(),
@@ -16,17 +17,27 @@ export const jobSchema = Joi.object({
 
 // Get job by job ID
 export const getByJobId = async (jobId) => {
-  const [rows] = await pool.query('SELECT * FROM jobs WHERE job_id = ?', [
-    jobId,
-  ]);
+  const [rows] = await pool.query(
+    `
+    SELECT j.*, jt.name as job_name, jt.stage
+    FROM jobs j
+    JOIN job_types jt ON j.job_type_id = jt.id
+    WHERE j.job_id = ?`,
+    [jobId]
+  );
   return rows[0];
 };
 
 // Get jobs by pipeline ID
 export const getByPipelineId = async (pipelineId) => {
-  const [rows] = await pool.query('SELECT * FROM jobs WHERE pipeline_id = ?', [
-    pipelineId,
-  ]);
+  const [rows] = await pool.query(
+    `
+    SELECT j.*, jt.name as job_name, jt.stage
+    FROM jobs j
+    JOIN job_types jt ON j.job_type_id = jt.id
+    WHERE j.pipeline_id = ?`,
+    [pipelineId]
+  );
   return rows;
 };
 
@@ -46,18 +57,20 @@ export const create = async (jobData) => {
     runner_info,
   } = jobData;
 
+  // Get or create job type
+  const jobType = await jobTypesModel.getOrCreate(name, stage);
+
   const [result] = await pool.query(
     `INSERT INTO jobs
-    (job_id, pipeline_id, project_id, name, status, stage, started_at, finished_at,
+    (job_id, pipeline_id, project_id, job_type_id, status, started_at, finished_at,
      duration, web_url, runner_info)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       job_id,
       pipeline_id,
       project_id,
-      name,
+      jobType.id,
       status,
-      stage,
       started_at,
       finished_at,
       duration,
@@ -70,13 +83,13 @@ export const create = async (jobData) => {
 
 // Update job
 export const update = async (jobId, jobData) => {
-  const { status, stage, started_at, finished_at, duration, web_url } = jobData;
+  const { status, started_at, finished_at, duration, web_url } = jobData;
   const [result] = await pool.query(
     `UPDATE jobs
-     SET status = ?, stage = ?, started_at = ?, finished_at = ?,
+     SET status = ?, started_at = ?, finished_at = ?,
          duration = ?, web_url = ?
      WHERE id = ?`,
-    [status, stage, started_at, finished_at, duration, web_url, jobId]
+    [status, started_at, finished_at, duration, web_url, jobId]
   );
   return result.affectedRows;
 };
@@ -90,29 +103,34 @@ export const updateStatus = async (jobId, status, finished_at = null) => {
   return result.affectedRows;
 };
 
-// Get jobs by project ID (renamed from getByPackageId)
+// Get jobs by project ID
 export const getByProjectId = async (projectId) => {
-  const [rows] = await pool.query('SELECT * FROM jobs WHERE project_id = ?', [
-    projectId,
-  ]);
-  return rows;
-};
-
-// Get all unique jobs
-export const getListOfUniqueJobs = async () => {
   const [rows] = await pool.query(
-    'SELECT DISTINCT name FROM jobs ORDER BY name'
+    `
+    SELECT j.*, jt.name as job_name, jt.stage
+    FROM jobs j
+    JOIN job_types jt ON j.job_type_id = jt.id
+    WHERE j.project_id = ?
+    ORDER BY j.started_at DESC`,
+    [projectId]
   );
   return rows;
 };
 
-// Get packages that have a job with the given name
+// Get all unique job types
+export const getListOfUniqueJobs = async () => {
+  const [rows] = await pool.query('SELECT * FROM job_types ORDER BY name');
+  return rows;
+};
+
+// Get packages that have a job with the given job type
 export const getPackagesByJobName = async (jobName) => {
   const [rows] = await pool.query(
     `SELECT DISTINCT p.*
      FROM packages p
      JOIN jobs j ON p.project_id = j.project_id
-     WHERE j.name = ?
+     JOIN job_types jt ON j.job_type_id = jt.id
+     WHERE jt.name = ?
      ORDER BY p.name`,
     [jobName]
   );
@@ -122,7 +140,10 @@ export const getPackagesByJobName = async (jobName) => {
 // Get all jobs
 export const getAllJobs = async (limit = 100, offset = 0) => {
   const [rows] = await pool.query(
-    'SELECT * FROM jobs ORDER BY started_at DESC LIMIT ? OFFSET ?',
+    `SELECT j.*, jt.name as job_name, jt.stage, jt.origin
+     FROM jobs j
+     JOIN job_types jt ON j.job_type_id = jt.id
+     ORDER BY j.started_at DESC LIMIT ? OFFSET ?`,
     [limit, offset]
   );
   return rows;

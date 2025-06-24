@@ -105,7 +105,6 @@ const updateJobsForPipeline = async (projectId, pipelineId) => {
         // Update existing job if status or other fields changed
         await jobModel.update(existingJob.id, {
           status: job.status,
-          stage: job.stage,
           started_at: job.started_at,
           finished_at: job.finished_at,
           duration: job.duration,
@@ -120,17 +119,6 @@ const updateJobsForPipeline = async (projectId, pipelineId) => {
   } catch (err) {
     console.error(`Error updating jobs for pipeline ${pipelineId}:`, err);
     return false;
-  }
-};
-
-// Get a list of all unique jobs
-const getJobsList = async (req, res) => {
-  try {
-    const jobs = await jobModel.getListOfUniqueJobs();
-    res.status(200).json(jobs);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -164,7 +152,6 @@ export default {
   getJobsByProject,
   updateJobStatus,
   updateJobsForPipeline,
-  getJobsList,
   getPackagesByJobName,
   getAllJobs,
 };
