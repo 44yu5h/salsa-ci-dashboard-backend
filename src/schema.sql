@@ -75,3 +75,55 @@ CREATE TABLE merge_requests (
   author_name VARCHAR(255),
   author_avatar_url TEXT
 );
+
+-- Hourly Job Type Stats table
+CREATE TABLE hourly_job_type_stats (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  period_start DATETIME NOT NULL,
+  job_type_id INT NOT NULL,
+  total_jobs INT NOT NULL,
+  passed_jobs INT NOT NULL,
+  failed_jobs INT NOT NULL,
+  avg_duration_seconds INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_hourly_job_type FOREIGN KEY (job_type_id) REFERENCES job_types(id) ON DELETE CASCADE,
+  UNIQUE (period_start, job_type_id)
+);
+
+-- Daily Job Type Stats table
+CREATE TABLE daily_job_type_stats (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  job_type_id INT NOT NULL,
+  total_jobs INT NOT NULL,
+  passed_jobs INT NOT NULL,
+  failed_jobs INT NOT NULL,
+  avg_duration_seconds INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_daily_job_type FOREIGN KEY (job_type_id) REFERENCES job_types(id) ON DELETE CASCADE,
+  UNIQUE (date, job_type_id)
+);
+
+-- Hourly Pipeline Stats table
+CREATE TABLE hourly_pipeline_stats (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  period_start DATETIME NOT NULL,
+  total_pipelines INT NOT NULL,
+  passed_pipelines INT NOT NULL,
+  failed_pipelines INT NOT NULL,
+  avg_duration_seconds INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (period_start)
+);
+
+-- Daily Pipeline Stats table
+CREATE TABLE daily_pipeline_stats (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  total_pipelines INT NOT NULL,
+  passed_pipelines INT NOT NULL,
+  failed_pipelines INT NOT NULL,
+  avg_duration_seconds INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (date)
+);
