@@ -76,6 +76,8 @@ CREATE TABLE merge_requests (
   author_avatar_url TEXT
 );
 
+-- Statistics tables - stats are only calculated for jobs that belong to official Salsa CI pipeline
+
 -- Hourly Job Type Stats table
 CREATE TABLE hourly_job_type_stats (
   id INT AUTO_INCREMENT PRIMARY KEY,

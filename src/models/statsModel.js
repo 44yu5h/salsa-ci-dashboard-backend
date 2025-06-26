@@ -141,6 +141,7 @@ export const calculateHourlyJobTypeStats = async (periodStart) => {
     WHERE j.started_at >= ?
       AND j.started_at < ?
       AND j.status IN ('success', 'failed')
+      AND jt.origin = 'salsaci'
     GROUP BY j.job_type_id`,
     [periodStart, periodEnd]
   );
@@ -167,6 +168,7 @@ export const calculateDailyJobTypeStats = async (date) => {
     WHERE j.started_at >= ?
       AND j.started_at < ?
       AND j.status IN ('success', 'failed')
+      AND jt.origin = 'salsaci'
     GROUP BY j.job_type_id`,
     [startOfDay, nextDay]
   );
