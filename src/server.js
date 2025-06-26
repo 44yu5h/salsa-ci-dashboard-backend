@@ -14,6 +14,10 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
+// Ensure server runs in UTC for consistent timestamps
+process.env.TZ = 'UTC';
+console.log(`Server time is: ${new Date()}`);
+
 const corsOption = {
   origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
 };
