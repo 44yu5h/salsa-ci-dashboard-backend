@@ -136,9 +136,9 @@ const checkPendingPipelines = async () => {
           pipelineData
         );
 
-        // If status has changed from created, fetch and process jobs
+        // If the pipeline has finished with a final status, fetch and process jobs
         if (
-          !['created', 'pending', 'waiting_for_resource'].includes(
+          ['success', 'failed', 'canceled', 'skipped', 'manual'].includes(
             pipelineData.status
           )
         ) {
