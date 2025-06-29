@@ -220,3 +220,29 @@ export const calculateDailyPipelineStats = async (date) => {
 
   return rows[0];
 };
+
+export const getDashboardStats = async () => {
+  const [rows] = await pool.query(`
+      SELECT
+        (SELECT COUNT(DISTINCT id) FROM job_types) AS jobTypesCount,
+        (SELECT COUNT(*) FROM jobs) AS jobsCount,
+        (SELECT COUNT(*) FROM pipelines) AS pipelinesCount,
+        (SELECT COUNT(*) FROM packages) AS packagesCount,
+        (SELECT COUNT(*) FROM pipelines WHERE status = 'success') AS successfulPipelines,
+        (SELECT COUNT(*) FROM pipelines WHERE status IN ('success', 'failed')) AS totalCompletedPipelines
+    `);
+
+  // Success rate (only for completed pipelines)
+  const stats = rows[0];
+  stats.successRate =
+    stats.totalCompletedPipelines > 0
+      ? Math.round(
+          (stats.successfulPipelines / stats.totalCompletedPipelines) * 100
+        )
+      : 0;
+
+  // No need in frontend
+  delete stats.totalCompletedPipelines;
+
+  return stats;
+};

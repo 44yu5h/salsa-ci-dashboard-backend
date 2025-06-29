@@ -6,6 +6,7 @@ import jobsRoute from './routes/jobsRoute.js';
 import jobTypesRoute from './routes/jobTypesRoute.js';
 import packagesRoute from './routes/packagesRoute.js';
 import mergeRequestRoute from './routes/mergeRequestRoute.js';
+import statsRoute from './routes/statsRoute.js';
 import startPipelineUpdateCron from './cron/pipelineUpdater.js';
 import startMergeRequestUpdateCron from './cron/mergeRequestUpdater.js';
 import startAllStatsCron from './cron/statsUpdater.js';
@@ -30,6 +31,7 @@ app.use('/jobs', jobsRoute);
 app.use('/job-types', jobTypesRoute);
 app.use('/packages', packagesRoute);
 app.use('/merge-requests', mergeRequestRoute);
+app.use('/stats', statsRoute);
 
 app.get('/', (_req, res) => {
   res.status(200).send('Server is functioning properly!');

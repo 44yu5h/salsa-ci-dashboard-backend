@@ -138,9 +138,20 @@ const processDailyPipelineStats = async () => {
   }
 };
 
+const getDashboardStats = async (req, res) => {
+  try {
+    const stats = await statsModel.getDashboardStats();
+    res.status(200).json(stats);
+  } catch (err) {
+    console.error('Error fetching dashboard stats:', err);
+    res.status(500).json({ message: 'Failed to fetch dashboard statistics' });
+  }
+};
+
 export default {
   processHourlyJobTypeStats,
   processDailyJobTypeStats,
   processHourlyPipelineStats,
   processDailyPipelineStats,
+  getDashboardStats,
 };
