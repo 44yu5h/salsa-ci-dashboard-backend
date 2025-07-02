@@ -246,3 +246,37 @@ export const getDashboardStats = async () => {
 
   return stats;
 };
+
+// Get hourly pipeline stats for a period
+export const getHourlyPipelineStatsForPeriod = async (startDate, endDate) => {
+  const [rows] = await pool.query(
+    `SELECT
+      period_start,
+      total_pipelines,
+      passed_pipelines,
+      failed_pipelines
+    FROM hourly_pipeline_stats
+    WHERE period_start >= ? AND period_start <= ?
+    ORDER BY period_start ASC`,
+    [startDate, endDate]
+  );
+
+  return rows;
+};
+
+// Get daily pipeline stats for a specified period
+export const getDailyPipelineStatsForPeriod = async (startDate, endDate) => {
+  const [rows] = await pool.query(
+    `SELECT
+      date,
+      total_pipelines,
+      passed_pipelines,
+      failed_pipelines
+    FROM daily_pipeline_stats
+    WHERE date >= ? AND date <= ?
+    ORDER BY date ASC`,
+    [startDate, endDate]
+  );
+
+  return rows;
+};
