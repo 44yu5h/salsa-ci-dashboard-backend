@@ -148,3 +148,17 @@ export const getAllJobs = async (limit = 100, offset = 0) => {
   );
   return rows;
 };
+
+// Get jobs by job type name
+export const getJobsByJobType = async (jobTypeName) => {
+  const [rows] = await pool.query(
+    `SELECT j.*, jt.name as job_name, jt.stage, jt.origin
+     FROM jobs j
+     JOIN job_types jt ON j.job_type_id = jt.id
+     WHERE jt.name = ?
+     ORDER BY j.started_at DESC
+     LIMIT 100`,
+    [jobTypeName]
+  );
+  return rows;
+};

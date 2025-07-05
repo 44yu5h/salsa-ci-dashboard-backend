@@ -146,6 +146,19 @@ const getAllJobs = async (req, res) => {
   }
 };
 
+// Get jobs by job type name
+const getJobsByJobType = async (req, res) => {
+  try {
+    const { jobTypeName } = req.params;
+    const jobs = await jobModel.getJobsByJobType(jobTypeName);
+
+    res.status(200).json(jobs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getByJobId,
   getJobsByPipeline,
@@ -154,4 +167,5 @@ export default {
   updateJobsForPipeline,
   getPackagesByJobName,
   getAllJobs,
+  getJobsByJobType,
 };

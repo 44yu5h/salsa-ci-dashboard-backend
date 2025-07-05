@@ -8,6 +8,9 @@ router.get('/pipeline/:pipelineId', jobsController.getJobsByPipeline);
 // Get jobs by project ID (renamed from package)
 router.get('/project/:projectId', jobsController.getJobsByProject);
 
+// Get jobs by job type name
+router.get('/job-type/:jobTypeName', jobsController.getJobsByJobType);
+
 // Update job status
 router.patch('/:jobId/status', jobsController.updateJobStatus);
 
