@@ -8,4 +8,7 @@ router.get('/dashboard', statsController.getDashboardStats);
 // Get pipeline statistics for the chart
 router.get('/pipelines', statsController.getPipelineStats);
 
+// Get job type statistics
+router.get('/job-types/:jobTypeId', statsController.getJobTypeStats);
+
 export default router;

@@ -280,3 +280,47 @@ export const getDailyPipelineStatsForPeriod = async (startDate, endDate) => {
 
   return rows;
 };
+
+// Get hourly job type stats for a specified period
+export const getHourlyJobTypeStatsForPeriod = async (
+  jobTypeId,
+  startDate,
+  endDate
+) => {
+  const [rows] = await pool.query(
+    `SELECT
+      period_start,
+      total_jobs,
+      passed_jobs,
+      failed_jobs,
+      avg_duration_seconds
+    FROM hourly_job_type_stats
+    WHERE job_type_id = ? AND period_start >= ? AND period_start <= ?
+    ORDER BY period_start ASC`,
+    [jobTypeId, startDate, endDate]
+  );
+
+  return rows;
+};
+
+// Get daily job type stats for a job type
+export const getDailyJobTypeStatsForPeriod = async (
+  jobTypeId,
+  startDate,
+  endDate
+) => {
+  const [rows] = await pool.query(
+    `SELECT
+      date,
+      total_jobs,
+      passed_jobs,
+      failed_jobs,
+      avg_duration_seconds
+    FROM daily_job_type_stats
+    WHERE job_type_id = ? AND date >= ? AND date <= ?
+    ORDER BY date ASC`,
+    [jobTypeId, startDate, endDate]
+  );
+
+  return rows;
+};
