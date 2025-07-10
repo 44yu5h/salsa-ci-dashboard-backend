@@ -1,6 +1,7 @@
 import * as jobModel from '../models/jobModel.js';
 import * as packageModel from '../models/packageModel.js';
 import salsaApi from '../config/salsa.js';
+import { parseFilterParams } from '../utils/filterUtils.js';
 
 // Get a job by ID
 const getByJobId = async (req, res) => {
@@ -150,9 +151,16 @@ const getAllJobs = async (req, res) => {
 const getJobsByJobType = async (req, res) => {
   try {
     const { jobTypeName } = req.params;
-    const jobs = await jobModel.getJobsByJobType(jobTypeName);
 
-    res.status(200).json(jobs);
+    // Handle and validate query params
+    const filterParams = parseFilterParams(req.query, {
+      defaultSortBy: 'started_at',
+      defaultLimit: 10,
+    });
+
+    const result = await jobModel.getJobsByJobType(jobTypeName, filterParams);
+
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal server error' });

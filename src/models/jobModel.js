@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { pool } from '../config/db.js';
 import * as jobTypesModel from './jobTypesModel.js';
+import { buildFilterableQuery } from '../utils/filterUtils.js';
 
 // Job validation schema
 export const jobSchema = Joi.object({
@@ -149,16 +150,74 @@ export const getAllJobs = async (limit = 100, offset = 0) => {
   return rows;
 };
 
-// Get jobs by job type name
-export const getJobsByJobType = async (jobTypeName) => {
-  const [rows] = await pool.query(
-    `SELECT j.*, jt.name as job_name, jt.stage, jt.origin
-     FROM jobs j
-     JOIN job_types jt ON j.job_type_id = jt.id
-     WHERE jt.name = ?
-     ORDER BY j.started_at DESC
-     LIMIT 100`,
-    [jobTypeName]
+// Get jobs by job type name with sorting, filtering and pagination
+export const getJobsByJobType = async (
+  jobTypeName,
+  {
+    sortBy = 'started_at',
+    sortOrder = 'DESC',
+    statusFilter = [],
+    minDuration,
+    maxDuration,
+    startDate,
+    endDate,
+    page = 1,
+    limit = 10,
+  } = {}
+) => {
+  // Define initial form of queries
+  const baseQuery = `
+    SELECT j.*, jt.name as job_name, jt.stage, jt.origin
+    FROM jobs j
+    JOIN job_types jt ON j.job_type_id = jt.id`;
+
+  const countQuery = `
+    SELECT COUNT(*) as total
+    FROM jobs j
+    JOIN job_types jt ON j.job_type_id = jt.id`;
+
+  // Set up initial parameters and filters
+  const baseParams = [jobTypeName];
+  const additionalWhereClause = 'jt.name = ?';
+  const tablePrefix = 'j.';
+
+  // Final query assembly
+  const {
+    query: finalQuery,
+    countQuery: finalCountQuery,
+    params,
+    countParams,
+  } = buildFilterableQuery(
+    baseQuery,
+    countQuery,
+    {
+      sortBy,
+      sortOrder,
+      statusFilter,
+      minDuration,
+      maxDuration,
+      startDate,
+      endDate,
+      page,
+      limit,
+    },
+    baseParams,
+    {
+      validSortColumns: ['started_at', 'finished_at', 'duration', 'status'],
+      defaultSortColumn: 'started_at',
+      prefix: tablePrefix,
+      additionalWhereClause,
+    }
   );
-  return rows;
+
+  // Execute them
+  const [rows] = await pool.query(finalQuery, params);
+  const [countRows] = await pool.query(finalCountQuery, countParams);
+
+  return {
+    jobs: rows,
+    total: countRows[0].total,
+    page,
+    limit,
+  };
 };
