@@ -3,6 +3,7 @@ import * as pipelineModel from '../models/pipelineModel.js';
 import * as packageModel from '../models/packageModel.js';
 import jobsController from '../controllers/jobsController.js';
 import salsaApi from '../config/salsa.js';
+import { parseFilterParams } from '../utils/filterUtils.js';
 
 // Register a new pipeline with minimal information
 const registerPipeline = async (req, res) => {
@@ -208,17 +209,6 @@ const triggerPendingPipelinesCheck = async (req, res) => {
   }
 };
 
-// Get all pipelines
-const getPipelinesList = async (req, res) => {
-  try {
-    const pipelines = await pipelineModel.getList();
-    res.status(200).json(pipelines);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
 // Get pipelines by project ID
 const getPipelinesByProject = async (req, res) => {
   try {
@@ -231,12 +221,30 @@ const getPipelinesByProject = async (req, res) => {
   }
 };
 
+// Get all pipelines with filters, if any
+const getAllPipelines = async (req, res) => {
+  try {
+    // Handle and validate query params
+    const filterParams = parseFilterParams(req.query, {
+      defaultSortBy: 'created_at',
+      defaultLimit: 100,
+    });
+
+    const result = await pipelineModel.getAllPipelines(filterParams);
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   registerPipeline,
   getPipeline,
   updatePipelineStatus,
   checkPendingPipelines,
   triggerPendingPipelinesCheck,
-  getPipelinesList,
   getPipelinesByProject,
+  getAllPipelines,
 };

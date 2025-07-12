@@ -5,8 +5,8 @@ import pipelinesController from '../controllers/pipelinesController.js';
 // register a new Salsa pipeline
 router.put('/', pipelinesController.registerPipeline);
 
-// Get all pipelines - move this before the :pipelineId route
-router.get('/list', pipelinesController.getPipelinesList);
+// Get all pipelines with filters, if any
+router.get('/all', pipelinesController.getAllPipelines);
 
 // Get pipelines by project ID
 router.get('/project/:projectId', pipelinesController.getPipelinesByProject);
