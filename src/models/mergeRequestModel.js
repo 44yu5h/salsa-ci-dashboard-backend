@@ -66,3 +66,12 @@ export const getCount = async () => {
   );
   return result[0].count;
 };
+
+// Get merge requests within a date range
+export const getByDateRange = async (startDate, endDate) => {
+  const [rows] = await pool.query(
+    'SELECT * FROM merge_requests WHERE merged_at >= ? AND merged_at <= ? ORDER BY merged_at DESC',
+    [startDate.toISOString(), endDate.toISOString()]
+  );
+  return rows;
+};

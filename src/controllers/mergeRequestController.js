@@ -144,9 +144,37 @@ const getMergeRequestsJson = async (req, res) => {
   }
 };
 
+const DURATION_SEC_MAP = {
+  '24h': 24 * 60 * 60,
+  '7d': 7 * 24 * 60 * 60,
+  '30d': 30 * 24 * 60 * 60,
+  '6m': 180 * 24 * 60 * 60,
+  '1y': 365 * 24 * 60 * 60,
+};
+
+const getMergeRequestsByDuration = async (req, res) => {
+  try {
+    const { duration } = req.query;
+    const now = new Date();
+
+    const durationSec = DURATION_SEC_MAP[duration] || DURATION_SEC_MAP['7d'];
+    const startDate = new Date(now.getTime() - durationSec * 1000);
+
+    const mergeRequests = await mergeRequestModel.getByDateRange(
+      startDate,
+      now
+    );
+    return res.status(200).json(mergeRequests);
+  } catch (error) {
+    console.error('Error getting merge requests by duration:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   fetchMergeRequests,
   manuallyFetchMergeRequests,
   refreshMergeRequestsJson,
   getMergeRequestsJson,
+  getMergeRequestsByDuration,
 };
