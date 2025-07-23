@@ -353,3 +353,33 @@ export const bulkInsertHourlyPipelineStats = async (statsArray) => {
 
   return result.affectedRows;
 };
+
+export const bulkInsertHourlyJobTypeStats = async (statsArray) => {
+  if (!statsArray.length) return 0;
+
+  const values = statsArray.map((stats) => [
+    stats.period_start,
+    stats.job_type_id,
+    stats.total_jobs,
+    stats.passed_jobs,
+    stats.failed_jobs,
+    stats.avg_duration_seconds,
+  ]);
+
+  const formattedValues = values.reduce((acc, val) => acc.concat(val), []);
+  const placeholders = statsArray.map(() => '(?, ?, ?, ?, ?, ?)').join(', ');
+
+  const [result] = await pool.query(
+    `INSERT INTO hourly_job_type_stats
+    (period_start, job_type_id, total_jobs, passed_jobs, failed_jobs, avg_duration_seconds)
+    VALUES ${placeholders}
+    ON DUPLICATE KEY UPDATE
+    total_jobs = VALUES(total_jobs),
+    passed_jobs = VALUES(passed_jobs),
+    failed_jobs = VALUES(failed_jobs),
+    avg_duration_seconds = VALUES(avg_duration_seconds)`,
+    formattedValues
+  );
+
+  return result.affectedRows;
+};

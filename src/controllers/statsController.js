@@ -3,34 +3,38 @@ import * as defaults from '../constants/defaults.js';
 
 const processHourlyJobTypeStats = async () => {
   try {
-    // Start with the previous complete hour
     const now = new Date();
-    const periodStart = new Date(now);
-    periodStart.setMinutes(0, 0, 0);
-    periodStart.setHours(periodStart.getHours() - 1);
+    const allStats = [];
 
-    const jobTypeStats =
-      await statsModel.calculateHourlyJobTypeStats(periodStart);
+    // Start with the current hour and go 24h back
+    for (let i = 0; i < defaults.DEFAULT_MAX_DURATION_JOBS; i++) {
+      const periodStart = new Date(now);
+      periodStart.setMinutes(0, 0, 0);
+      periodStart.setHours(now.getHours() - i - 1);
 
-    if (jobTypeStats.length === 0) {
-      console.log('No job activity found for this hour');
+      const jobTypeStats = await statsModel.calculateHourlyJobTypeStats(periodStart);
+
+      for (const stat of jobTypeStats) {
+        allStats.push({
+          period_start: periodStart,
+          job_type_id: stat.job_type_id,
+          total_jobs: stat.total_jobs,
+          passed_jobs: stat.passed_jobs,
+          failed_jobs: stat.failed_jobs,
+          avg_duration_seconds: Math.round(stat.avg_duration_seconds || 0),
+        });
+      }
+    }
+
+    if (allStats.length === 0) {
+      console.log(`No job activity found for the past ${defaults.DEFAULT_MAX_DURATION_JOBS} hours`);
       return;
     }
 
-    let insertCount = 0;
-    for (const stat of jobTypeStats) {
-      await statsModel.insertHourlyJobTypeStats({
-        period_start: periodStart,
-        job_type_id: stat.job_type_id,
-        total_jobs: stat.total_jobs,
-        passed_jobs: stat.passed_jobs,
-        failed_jobs: stat.failed_jobs,
-        avg_duration_seconds: Math.round(stat.avg_duration_seconds || 0),
-      });
-      insertCount++;
-    }
-
+    // Insert all collected stats
+    const insertCount = await statsModel.bulkInsertHourlyJobTypeStats(allStats);
     console.log(`Inserted/updated ${insertCount} hourly job type stats`);
+
     return true;
   } catch (err) {
     console.error('Error processing hourly job type stats:', err);
