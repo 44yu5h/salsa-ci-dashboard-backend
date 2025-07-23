@@ -324,3 +324,32 @@ export const getDailyJobTypeStatsForPeriod = async (
 
   return rows;
 };
+
+export const bulkInsertHourlyPipelineStats = async (statsArray) => {
+  if (!statsArray.length) return 0;
+
+  const values = statsArray.map((stats) => [
+    stats.period_start,
+    stats.total_pipelines,
+    stats.passed_pipelines,
+    stats.failed_pipelines,
+    stats.avg_duration_seconds,
+  ]);
+
+  const formattedValues = values.reduce((acc, val) => acc.concat(val), []);
+  const placeholders = statsArray.map(() => '(?, ?, ?, ?, ?)').join(', ');
+
+  const [result] = await pool.query(
+    `INSERT INTO hourly_pipeline_stats
+    (period_start, total_pipelines, passed_pipelines, failed_pipelines, avg_duration_seconds)
+    VALUES ${placeholders}
+    ON DUPLICATE KEY UPDATE
+    total_pipelines = VALUES(total_pipelines),
+    passed_pipelines = VALUES(passed_pipelines),
+    failed_pipelines = VALUES(failed_pipelines),
+    avg_duration_seconds = VALUES(avg_duration_seconds)`,
+    formattedValues
+  );
+
+  return result.affectedRows;
+};

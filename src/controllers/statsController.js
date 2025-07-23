@@ -1,4 +1,5 @@
 import * as statsModel from '../models/statsModel.js';
+import * as defaults from '../constants/defaults.js';
 
 const processHourlyJobTypeStats = async () => {
   try {
@@ -78,27 +79,36 @@ const processDailyJobTypeStats = async () => {
 const processHourlyPipelineStats = async () => {
   try {
     const now = new Date();
-    const periodStart = new Date(now);
-    periodStart.setMinutes(0, 0, 0);
-    periodStart.setHours(periodStart.getHours() - 1);
+    const stats = [];
 
-    const pipelineStats =
-      await statsModel.calculateHourlyPipelineStats(periodStart);
+    // Start with the current hour and go 24h back
+    for (let i = 0; i < defaults.DEFAULT_MAX_DURATION_PIPELINES; i++) {
+      const periodStart = new Date(now);
+      periodStart.setMinutes(0, 0, 0);
+      periodStart.setHours(now.getHours() - i - 1);
 
-    if (!pipelineStats.total_pipelines) {
-      console.log('No pipeline activity found for this hour');
+      const pipelineStats = await statsModel.calculateHourlyPipelineStats(periodStart);
+
+      if (pipelineStats.total_pipelines) {
+        stats.push({
+          period_start: new Date(periodStart),
+          total_pipelines: pipelineStats.total_pipelines || 0,
+          passed_pipelines: pipelineStats.passed_pipelines || 0,
+          failed_pipelines: pipelineStats.failed_pipelines || 0,
+          avg_duration_seconds: Math.round(pipelineStats.avg_duration_seconds || 0),
+        });
+      }
+    }
+
+    if (stats.length === 0) {
+      console.log(`No pipeline activity found for the past ${defaults.DEFAULT_MAX_DURATION_PIPELINES} hours`);
       return;
     }
 
-    await statsModel.insertHourlyPipelineStats({
-      period_start: periodStart,
-      total_pipelines: pipelineStats.total_pipelines || 0,
-      passed_pipelines: pipelineStats.passed_pipelines || 0,
-      failed_pipelines: pipelineStats.failed_pipelines || 0,
-      avg_duration_seconds: Math.round(pipelineStats.avg_duration_seconds || 0),
-    });
+    // Insert all collected stats
+    const insertCount = await statsModel.bulkInsertHourlyPipelineStats(stats);
+    console.log(`Inserted/updated pipeline hourly stats for ${insertCount} hours`);
 
-    console.log(`Inserted/updated hourly pipeline stats`);
     return true;
   } catch (err) {
     console.error('Error processing hourly pipeline stats:', err);
