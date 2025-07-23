@@ -45,7 +45,7 @@ const processHourlyJobTypeStats = async () => {
 const processDailyJobTypeStats = async () => {
   try {
     const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate());
+    yesterday.setDate(yesterday.getDate() - 1);
     yesterday.setHours(0, 0, 0, 0);
 
     const jobTypeStats = await statsModel.calculateDailyJobTypeStats(yesterday);
