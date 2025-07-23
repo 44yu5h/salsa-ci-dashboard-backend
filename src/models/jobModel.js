@@ -221,3 +221,75 @@ export const getJobsByJobType = async (
     limit,
   };
 };
+
+// Get multiple jobs by job IDs. Used in pipeline reg
+export const getByJobIds = async (jobIds) => {
+  if (!jobIds || jobIds.length === 0) {
+    return [];
+  }
+
+  const placeholders = jobIds.map(() => '?').join(', ');
+  const [rows] = await pool.query(
+    `SELECT j.*, jt.name as job_name, jt.stage
+     FROM jobs j
+     JOIN job_types jt ON j.job_type_id = jt.id
+     WHERE j.job_id IN (${placeholders})`,
+    jobIds
+  );
+  return rows;
+};
+
+// Batch insert or update jobs
+export const batchInsertOrUpdate = async (jobsData) => {
+  if (!jobsData || jobsData.length === 0) {
+    return { created: 0, updated: 0 };
+  }
+
+  const jobTypePromises = jobsData.map((job) =>
+    jobTypesModel.getOrCreate(job.name, job.stage)
+  );
+  const jobTypes = await Promise.all(jobTypePromises);
+
+  const jobTypeMap = new Map();
+  jobsData.forEach((job, index) => {
+    jobTypeMap.set(job.name, jobTypes[index].id);
+  });
+
+  const values = jobsData.map((job) => [
+    job.job_id,
+    job.pipeline_id,
+    job.project_id,
+    jobTypeMap.get(job.name),
+    job.status,
+    job.started_at,
+    job.finished_at,
+    job.duration,
+    job.web_url,
+    JSON.stringify(job.runner_info),
+  ]);
+
+  const placeholders = values
+    .map(() => '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    .join(', ');
+  const formattedValues = values.flat();
+
+  const [result] = await pool.query(
+    `INSERT INTO jobs
+    (job_id, pipeline_id, project_id, job_type_id, status, started_at, finished_at,
+     duration, web_url, runner_info)
+    VALUES ${placeholders}
+    ON DUPLICATE KEY UPDATE
+    status = VALUES(status),
+    started_at = VALUES(started_at),
+    finished_at = VALUES(finished_at),
+    duration = VALUES(duration),
+    web_url = VALUES(web_url),
+    runner_info = VALUES(runner_info)`,
+    formattedValues
+  );
+
+  return {
+    created: result.affectedRows - result.changedRows,
+    updated: result.changedRows,
+  };
+};

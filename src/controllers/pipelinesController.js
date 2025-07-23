@@ -132,10 +132,6 @@ const checkPendingPipelines = async () => {
           `/projects/${pipeline.project_id}/pipelines/${pipeline.pipeline_id}`
         );
         const pipelineData = response.data;
-        console.log(
-          `Fetched pipeline ${pipeline.pipeline_id} data:`,
-          pipelineData
-        );
 
         // If the pipeline has finished with a final status, fetch and process jobs
         if (

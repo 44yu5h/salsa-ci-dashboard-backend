@@ -81,39 +81,29 @@ const updateJobsForPipeline = async (projectId, pipelineId) => {
 
     console.log(`Processing ${jobs.length} jobs for pipeline ${pipelineId}`);
 
-    // Process each job
-    for (const job of jobs) {
-      // Check if job already exists
-      const existingJob = await jobModel.getByJobId(job.id);
-
-      if (!existingJob) {
-        // Create new job
-        await jobModel.create({
-          job_id: job.id,
-          pipeline_id: pipelineId,
-          project_id: projectId,
-          name: job.name,
-          status: job.status,
-          stage: job.stage,
-          started_at: job.started_at,
-          finished_at: job.finished_at,
-          web_url: job.web_url,
-          duration: job.duration,
-          runner_info: job.runner || null,
-        });
-        console.log(`Created new job: ${job.name} (ID: ${job.id})`);
-      } else {
-        // Update existing job if status or other fields changed
-        await jobModel.update(existingJob.id, {
-          status: job.status,
-          started_at: job.started_at,
-          finished_at: job.finished_at,
-          duration: job.duration,
-          web_url: job.web_url,
-        });
-        console.log(`Updated job: ${job.name} (ID: ${job.id})`);
-      }
+    if (jobs.length === 0) {
+      console.log(`No jobs found for pipeline ${pipelineId}`);
+      return true;
     }
+
+    const jobsData = jobs.map((job) => ({
+      job_id: job.id,
+      pipeline_id: pipelineId,
+      project_id: projectId,
+      name: job.name,
+      status: job.status,
+      stage: job.stage,
+      started_at: job.started_at,
+      finished_at: job.finished_at,
+      web_url: job.web_url,
+      duration: job.duration,
+      runner_info: job.runner || null,
+    }));
+
+    const result = await jobModel.batchInsertOrUpdate(jobsData);
+    console.log(
+      `Pipeline ${pipelineId}: Created ${result.created} new jobs, updated ${result.updated} existing jobs`
+    );
 
     console.log(`Finished processing jobs for pipeline ${pipelineId}`);
     return true;
