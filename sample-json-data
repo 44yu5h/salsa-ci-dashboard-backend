@@ -2754,3 +2754,40 @@
     "web_url": "https://salsa.debian.org/salsa-ci-team/pipeline/-/commit/0587df5a3ee35547f5aa6f895956993989f71939"
   },
 ]
+
+// SECTION - Tags
+// https://salsa.debian.org/api/v4/projects/89466/repository/tags
+
+[
+  {
+    "name": "debian/0.3.0-1",
+    "message": "",
+    "target": "574ad2dcce1553be239b21f6738d838ae22a2e90",
+    "commit": {
+      "id": "eaa588e4ba709f2bc72a1361a7878ea3fe5347b9",
+      "short_id": "eaa588e4",
+      "created_at": "2025-07-15T21:08:43.000+02:00",
+      "parent_ids": [
+        "ab87799f2932fa20b4a101c905447b3d69aa514f"
+      ],
+      "title": "Update changelog",
+      "message": "Update changelog\n",
+      "author_name": "Valentin Vidic",
+      "author_email": "vvidic@debian.org",
+      "authored_date": "2025-07-15T21:08:43.000+02:00",
+      "committer_name": "Valentin Vidic",
+      "committer_email": "vvidic@debian.org",
+      "committed_date": "2025-07-15T21:08:43.000+02:00",
+      "trailers": {
+
+      },
+      "extended_trailers": {
+
+      },
+      "web_url": "https://salsa.debian.org/debian/glome/-/commit/eaa588e4ba709f2bc72a1361a7878ea3fe5347b9"
+    },
+    "release": null,
+    "protected": false,
+    "created_at": "2025-07-15T19:09:02.000Z"
+  },
+]
