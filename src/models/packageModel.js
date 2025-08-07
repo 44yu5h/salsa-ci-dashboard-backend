@@ -164,3 +164,40 @@ export const getList = async (limit = 100, offset = 0) => {
   ]);
   return rows;
 };
+
+// Get all packages with pagination
+export const getAllPackages = async (filters) => {
+  const baseQuery = `SELECT * FROM packages`;
+  const countQuery = `SELECT COUNT(*) as total FROM packages`;
+
+  // Add sorting
+  const validSortColumns = [
+    'name',
+    'created_at',
+    'updated_at',
+    'last_activity_at',
+  ];
+  const sortColumn = validSortColumns.includes(filters.sortBy)
+    ? filters.sortBy
+    : 'last_activity_at';
+  const sortOrder = filters.sortOrder;
+  const orderByClause = `ORDER BY ${sortColumn} ${sortOrder}`;
+
+  // Add pagination
+  const limit = Number(filters.limit) || 24;
+  const offset = ((Number(filters.page) || 1) - 1) * limit;
+
+  // Final query
+  const finalQuery = `${baseQuery} ${orderByClause} LIMIT ? OFFSET ?`;
+
+  // Execute queries
+  const [rows] = await pool.query(finalQuery, [limit, offset]);
+  const [countResult] = await pool.query(countQuery);
+
+  return {
+    packages: rows,
+    total: countResult[0].total,
+    page: filters.page || 1,
+    limit,
+  };
+};

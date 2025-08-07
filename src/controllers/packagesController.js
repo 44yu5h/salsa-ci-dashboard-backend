@@ -1,4 +1,5 @@
 import * as packageModel from '../models/packageModel.js';
+import { parseFilterParams } from '../utils/filterUtils.js';
 
 // Get package by ID (package ID = project ID)
 const getPackage = async (req, res) => {
@@ -28,7 +29,25 @@ const getPackagesList = async (req, res) => {
   }
 };
 
+// Get all packages with pagination
+const getAllPackages = async (req, res) => {
+  try {
+    const filters = parseFilterParams(req.query, {
+      defaultSortBy: 'last_activity_at',
+      defaultSortOrder: 'DESC',
+      defaultLimit: 24,
+    });
+
+    const result = await packageModel.getAllPackages(filters);
+    res.status(200).json(result);
+  } catch (err) {
+    console.error('Error fetching packages:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getPackage,
   getPackagesList,
+  getAllPackages,
 };
