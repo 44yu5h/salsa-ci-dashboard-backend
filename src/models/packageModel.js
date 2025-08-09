@@ -184,7 +184,7 @@ export const getAllPackages = async (filters) => {
 
   // Add sorting
   const validSortColumns = [
-    'name',
+    'LOWER(name)',
     'created_at',
     'updated_at',
     'last_activity_at',
