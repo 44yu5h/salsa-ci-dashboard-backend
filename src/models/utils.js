@@ -15,13 +15,15 @@ export const getLatestVersionAndMaintainer = async (projectId) => {
         : tag.name
       : null;
 
-    // fetch maintainer from debian/control on debian/master
+    // fetch maintainer from debian/control on default branch
     const filePath = encodeURIComponent('debian/control');
     let maintainer = '';
     try {
       const { data: controlRaw } = await salsaApi.get(
-        `/projects/${projectId}/repository/files/${filePath}/raw`,
-        { params: { ref: 'debian/master' } }
+        `/projects/${projectId}/repository/files/${filePath}/raw`
+        // Do not specify the ref param to avoid 404s when debian/master does not exist
+        // Fetch from the repo's default branch (mostly master, main or debian/master)
+        // { params: { ref: 'debian/master' } }
       );
       const match = String(controlRaw).match(/^\s*Maintainer:\s*(.+)\s*$/im);
       maintainer = match ? match[1].trim() : '';
