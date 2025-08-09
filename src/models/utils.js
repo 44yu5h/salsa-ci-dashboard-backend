@@ -1,6 +1,6 @@
 import salsaApi from '../config/salsa.js';
 
-// Return version and maintainer from the latest tag
+// Return version (from latest tag) and maintainer (from debian/control)
 export const getLatestVersionAndMaintainer = async (projectId) => {
   try {
     const { data } = await salsaApi.get(
@@ -8,24 +8,29 @@ export const getLatestVersionAndMaintainer = async (projectId) => {
     );
 
     const tag = Array.isArray(data) && data.length > 0 ? data[0] : null;
-    if (!tag) return { version: null, maintainer: '' };
 
-    const version = tag.name
+    const version = tag?.name
       ? tag.name.includes('/')
         ? tag.name.split('/').pop()
         : tag.name
       : null;
 
-    // Assuming maintainer is the one who committed the tag
-    const authorName =
-      tag?.commit?.author_name || tag?.commit?.committer_name || '';
-    const authorEmail =
-      tag?.commit?.author_email || tag?.commit?.committer_email || '';
-    const maintainer = authorName
-      ? authorEmail
-        ? `${authorName} <${authorEmail}>`
-        : authorName
-      : '';
+    // fetch maintainer from debian/control on debian/master
+    const filePath = encodeURIComponent('debian/control');
+    let maintainer = '';
+    try {
+      const { data: controlRaw } = await salsaApi.get(
+        `/projects/${projectId}/repository/files/${filePath}/raw`,
+        { params: { ref: 'debian/master' } }
+      );
+      const match = String(controlRaw).match(/^\s*Maintainer:\s*(.+)\s*$/im);
+      maintainer = match ? match[1].trim() : '';
+    } catch (e) {
+      console.error(
+        `Failed to fetch maintainer from debian/control for project #${projectId} :`,
+        e?.response?.data || e.message
+      );
+    }
 
     return { version, maintainer };
   } catch (err) {
