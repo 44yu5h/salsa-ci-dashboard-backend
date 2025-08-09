@@ -78,9 +78,36 @@ const updateAllPackages = async () => {
   }
 };
 
+// Manually trigger update for projects: all or a single with projectId in body
+const manualUpdateProjects = async (req, res) => {
+  try {
+    const { projectId } = req.body || {};
+    if (projectId !== undefined) {
+      projectId = Number(projectId);
+      if (!Number.isInteger(projectId)) {
+        return res.status(400).json({ message: 'Invalid projectId parameter' });
+      }
+      await packageModel.fetchAndStorePackageDetails(projectId);
+      return res.status(200).json({
+        message: `Project #${projectId} updated successfully`,
+        projectId: projectId,
+      });
+    }
+    const result = await updateAllPackages();
+    return res.status(200).json({
+      message: 'Finished updating all projects',
+      ...result,
+    });
+  } catch (err) {
+    console.error('Manual update failed:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getPackage,
   getPackagesList,
   getAllPackages,
   updateAllPackages,
+  manualUpdateProjects,
 };
