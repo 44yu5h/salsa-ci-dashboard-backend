@@ -10,6 +10,7 @@ import statsRoute from './routes/statsRoute.js';
 import startPipelineUpdateCron from './cron/pipelineUpdater.js';
 import startMergeRequestUpdateCron from './cron/mergeRequestUpdater.js';
 import startAllStatsCron from './cron/statsUpdater.js';
+import startPackageUpdateCron from './cron/packageUpdater.js';
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.get('/', (_req, res) => {
 startPipelineUpdateCron();
 startMergeRequestUpdateCron();
 startAllStatsCron();
+startPackageUpdateCron();
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

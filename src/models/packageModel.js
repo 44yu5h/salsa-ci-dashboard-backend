@@ -159,6 +159,15 @@ export const fetchAndStorePackageDetails = async (projectId) => {
   }
 };
 
+// Get all project IDs
+export const getProjectIds = async (limit = 100, offset = 0) => {
+  const [rows] = await pool.query(
+    'SELECT project_id FROM packages LIMIT ? OFFSET ?',
+    [limit, offset]
+  );
+  return rows.map((row) => row.project_id);
+};
+
 // Get all packages
 export const getList = async (limit = 100, offset = 0) => {
   const [rows] = await pool.query('SELECT * FROM packages LIMIT ? OFFSET ?', [

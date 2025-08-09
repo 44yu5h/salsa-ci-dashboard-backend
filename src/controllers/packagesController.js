@@ -46,8 +46,41 @@ const getAllPackages = async (req, res) => {
   }
 };
 
+// Update all packages
+const updateAllPackages = async () => {
+  try {
+    console.log('Starting package update process at', new Date());
+
+    // Get list of all package project IDs
+    const projectIds = await packageModel.getProjectIds(1000, 0);
+    console.log(`Found ${projectIds.length} packages to update`);
+
+    let updatedCount = 0;
+    for (const projectId of projectIds) {
+      try {
+        await packageModel.fetchAndStorePackageDetails(projectId);
+        updatedCount++;
+      } catch (error) {
+        console.error(
+          `Error updating package with project ID ${projectId}:`,
+          error.message
+        );
+      }
+    }
+
+    console.log(
+      `Successfully updated ${updatedCount} out of ${projectIds.length} packages`
+    );
+    return { updated: updatedCount, total: projectIds.length };
+  } catch (error) {
+    console.error('Error updating packages:', error);
+    throw error;
+  }
+};
+
 export default {
   getPackage,
   getPackagesList,
   getAllPackages,
+  updateAllPackages,
 };
