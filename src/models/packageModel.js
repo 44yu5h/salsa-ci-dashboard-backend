@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { pool } from '../config/db.js';
 import salsaApi from '../config/salsa.js';
+import { getLatestVersionAndMaintainer } from './utils.js';
 
 // Package validation schema
 export const packageSchema = Joi.object({
@@ -121,13 +122,17 @@ export const fetchAndStorePackageDetails = async (projectId) => {
     const response = await salsaApi.get(`/projects/${projectId}`);
     const projectData = response.data;
 
+    // Fetch latest version and maintainer from tag metadata
+    const { version, maintainer } =
+      await getLatestVersionAndMaintainer(projectId);
+
     // Transform GitLab data to our schema
     const formattedData = {
       name: projectData.name,
       project_id: projectData.id,
-      version: '1.0.0', // Default version for now
+      version: version,
       description: projectData.description || '',
-      maintainer: '', // Could be populated from elsewhere perhaps
+      maintainer: maintainer,
       status: 'active', // later determine from last_activity_at or other fields
       name_with_namespace: projectData.name_with_namespace,
       web_url: projectData.web_url,
@@ -140,14 +145,12 @@ export const fetchAndStorePackageDetails = async (projectId) => {
     if (existingPackage) {
       // Update existing package
       await update(existingPackage.id, formattedData);
-      console.log(`Updated package: ${projectData.name} (ID: ${projectId})`);
+      console.log(`Updated package: ${projectData.name} (#${projectId})`);
       return existingPackage.id;
     } else {
       // Create new package
       const id = await create(formattedData);
-      console.log(
-        `Created new package: ${projectData.name} (ID: ${projectId})`
-      );
+      console.log(`Created new package: ${projectData.name} (#${projectId})`);
       return id;
     }
   } catch (err) {
