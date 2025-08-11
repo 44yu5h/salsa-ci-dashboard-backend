@@ -90,3 +90,50 @@ export const getByOrigin = async (origin) => {
   );
   return rows;
 };
+
+// Summary statistics for multiple job types
+export const getSummaryStats = async (jobTypeIds = []) => {
+  if (!Array.isArray(jobTypeIds) || jobTypeIds.length === 0) {
+    return {};
+  }
+
+  const now = new Date();
+  const thirtyDaysAgo = new Date(now);
+  thirtyDaysAgo.setDate(now.getDate() - 30);
+
+  // 30d stats grouped
+  const [monthlyRows] = await pool.query(
+    `SELECT
+      j.job_type_id,
+      COUNT(*) AS total_runs,
+      SUM(CASE WHEN j.status = 'success' THEN 1 ELSE 0 END) AS successful_runs,
+      SUM(j.duration) AS total_duration_seconds,
+      AVG(j.duration) AS avg_duration_seconds
+    FROM jobs j
+    WHERE j.job_type_id IN (?)
+      AND j.started_at >= ?
+      AND j.status IN ('success', 'failed')
+    GROUP BY j.job_type_id`,
+    [jobTypeIds, thirtyDaysAgo]
+  );
+
+  const statsMap = {};
+
+  // Map results to job type ids
+  for (const r of monthlyRows) {
+    const totalRuns = Number(r.total_runs) || 0;
+    const successfulRuns = Number(r.successful_runs) || 0;
+
+    statsMap[r.job_type_id] = {
+      monthly_runs: totalRuns,
+      monthly_ci_minutes: Math.round(
+        (Number(r.total_duration_seconds) || 0) / 60
+      ),
+      monthly_avg_duration: Math.round(Number(r.avg_duration_seconds) || 0),
+      success_rate:
+        totalRuns > 0 ? Math.round((successfulRuns / totalRuns) * 100) : 100,
+    };
+  }
+
+  return statsMap;
+};

@@ -67,9 +67,33 @@ const getJobTypesByOrigin = async (req, res) => {
   }
 };
 
+// Get summary statistics for multiple job types
+const getJobTypesSummaryStats = async (req, res) => {
+  try {
+    const { jobTypeIds } = req.query;
+    const ids = (jobTypeIds || '')
+      .toString()
+      .split(',')
+      .map((s) => Number(s.trim()));
+
+    if (!ids.length) {
+      return res
+        .status(400)
+        .json({ message: 'No jobTypeIds query param provided' });
+    }
+
+    const statsMap = await jobTypesModel.getSummaryStats(ids);
+    return res.status(200).json(statsMap);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   getAllJobTypes,
   getJobTypeByName,
   updateJobType,
   getJobTypesByOrigin,
+  getJobTypesSummaryStats,
 };
