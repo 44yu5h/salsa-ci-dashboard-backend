@@ -383,3 +383,47 @@ export const bulkInsertHourlyJobTypeStats = async (statsArray) => {
 
   return result.affectedRows;
 };
+
+// Get project stats for the last 30 days
+export const getProjectStats = async (projectIds) => {
+  if (!Array.isArray(projectIds) || projectIds.length === 0) return {};
+
+  const now = new Date();
+  const thirtyDaysAgo = new Date(now);
+  thirtyDaysAgo.setDate(now.getDate() - 30);
+
+  const [rows] = await pool.query(
+    `SELECT
+      p.project_id,
+      COUNT(*) AS total_runs,
+      SUM(CASE WHEN p.status = 'success' THEN 1 ELSE 0 END) AS successful_runs,
+      SUM(p.duration) AS total_duration_seconds,
+      AVG(p.duration) AS avg_duration_seconds
+    FROM pipelines p
+    WHERE p.project_id IN (?)
+      AND p.started_at >= ?
+      AND p.status IN ('success', 'failed')
+    GROUP BY p.project_id`,
+    [projectIds, thirtyDaysAgo]
+  );
+
+  const statsMap = {};
+
+  // Map results to project ids
+  for (const r of rows) {
+    const totalRuns = Number(r.total_runs) || 0;
+    const successfulRuns = Number(r.successful_runs) || 0;
+
+    statsMap[r.project_id] = {
+      monthly_runs: totalRuns,
+      monthly_ci_minutes: Math.round(
+        (Number(r.total_duration_seconds) || 0) / 60
+      ),
+      monthly_avg_duration: Math.round(Number(r.avg_duration_seconds) || 0),
+      success_rate:
+        totalRuns > 0 ? Math.round((successfulRuns / totalRuns) * 100) : 100,
+    };
+  }
+
+  return statsMap;
+};

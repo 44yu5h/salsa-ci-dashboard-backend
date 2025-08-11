@@ -12,7 +12,8 @@ const processHourlyJobTypeStats = async () => {
       periodStart.setMinutes(0, 0, 0);
       periodStart.setHours(now.getHours() - i - 1);
 
-      const jobTypeStats = await statsModel.calculateHourlyJobTypeStats(periodStart);
+      const jobTypeStats =
+        await statsModel.calculateHourlyJobTypeStats(periodStart);
 
       for (const stat of jobTypeStats) {
         allStats.push({
@@ -27,7 +28,9 @@ const processHourlyJobTypeStats = async () => {
     }
 
     if (allStats.length === 0) {
-      console.log(`No job activity found for the past ${defaults.DEFAULT_MAX_DURATION_JOBS} hours`);
+      console.log(
+        `No job activity found for the past ${defaults.DEFAULT_MAX_DURATION_JOBS} hours`
+      );
       return;
     }
 
@@ -91,7 +94,8 @@ const processHourlyPipelineStats = async () => {
       periodStart.setMinutes(0, 0, 0);
       periodStart.setHours(now.getHours() - i - 1);
 
-      const pipelineStats = await statsModel.calculateHourlyPipelineStats(periodStart);
+      const pipelineStats =
+        await statsModel.calculateHourlyPipelineStats(periodStart);
 
       if (pipelineStats.total_pipelines) {
         stats.push({
@@ -99,19 +103,25 @@ const processHourlyPipelineStats = async () => {
           total_pipelines: pipelineStats.total_pipelines || 0,
           passed_pipelines: pipelineStats.passed_pipelines || 0,
           failed_pipelines: pipelineStats.failed_pipelines || 0,
-          avg_duration_seconds: Math.round(pipelineStats.avg_duration_seconds || 0),
+          avg_duration_seconds: Math.round(
+            pipelineStats.avg_duration_seconds || 0
+          ),
         });
       }
     }
 
     if (stats.length === 0) {
-      console.log(`No pipeline activity found for the past ${defaults.DEFAULT_MAX_DURATION_PIPELINES} hours`);
+      console.log(
+        `No pipeline activity found for the past ${defaults.DEFAULT_MAX_DURATION_PIPELINES} hours`
+      );
       return;
     }
 
     // Insert all collected stats
     const insertCount = await statsModel.bulkInsertHourlyPipelineStats(stats);
-    console.log(`Inserted/updated pipeline hourly stats for ${insertCount} hours`);
+    console.log(
+      `Inserted/updated pipeline hourly stats for ${insertCount} hours`
+    );
 
     return true;
   } catch (err) {
@@ -294,6 +304,28 @@ const getJobTypeStats = async (req, res) => {
   }
 };
 
+const getProjectStats = async (req, res) => {
+  try {
+    const { projectIds } = req.query;
+    const ids = (projectIds || '')
+      .toString()
+      .split(',')
+      .map((s) => Number(s.trim()));
+
+    if (!ids.length) {
+      return res
+        .status(400)
+        .json({ message: 'No projectIds query param found' });
+    }
+
+    const statsMap = await statsModel.getProjectStats(ids);
+    return res.status(200).json(statsMap);
+  } catch (err) {
+    console.error('Error fetching project stats:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 export default {
   processHourlyJobTypeStats,
   processDailyJobTypeStats,
@@ -302,4 +334,5 @@ export default {
   getDashboardStats,
   getPipelineStats,
   getJobTypeStats,
+  getProjectStats,
 };

@@ -11,4 +11,7 @@ router.get('/pipelines', statsController.getPipelineStats);
 // Get job type statistics
 router.get('/job-types/:jobTypeId', statsController.getJobTypeStats);
 
+// Get project statistics
+router.get('/projects', statsController.getProjectStats);
+
 export default router;
