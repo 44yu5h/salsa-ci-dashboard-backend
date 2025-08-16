@@ -1,5 +1,36 @@
 import salsaApi from '../config/salsa.js';
 
+// Duration utilities for stats controllers
+export const ALLOWED_DURATIONS = ['24h', '7d', '30d', '6m', '1y'];
+export const isValidDuration = (duration) =>
+  ALLOWED_DURATIONS.includes(duration);
+
+export const getPeriodForDuration = (duration, now = new Date()) => {
+  const endDate = new Date(now);
+  const startDate = new Date(now);
+  switch (duration) {
+    case '24h':
+      startDate.setHours(startDate.getHours() - 24);
+      break;
+    case '7d':
+      startDate.setDate(startDate.getDate() - 7);
+      break;
+    case '30d':
+      startDate.setDate(startDate.getDate() - 30);
+      break;
+    case '6m':
+      startDate.setMonth(startDate.getMonth() - 6);
+      break;
+    case '1y':
+      startDate.setFullYear(startDate.getFullYear() - 1);
+      break;
+    default:
+      startDate.setDate(startDate.getDate() - 7);
+      break;
+  }
+  return { startDate, endDate, isHourly: duration === '24h' };
+};
+
 // Return version (from latest tag) and maintainer (from debian/control)
 export const getLatestVersionAndMaintainer = async (projectId) => {
   try {

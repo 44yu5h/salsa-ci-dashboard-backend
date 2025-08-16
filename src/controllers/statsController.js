@@ -1,5 +1,6 @@
 import * as statsModel from '../models/statsModel.js';
 import * as defaults from '../constants/defaults.js';
+import { isValidDuration, getPeriodForDuration } from '../models/utils.js';
 
 const processHourlyJobTypeStats = async () => {
   try {
@@ -176,52 +177,18 @@ const getPipelineStats = async (req, res) => {
   try {
     const { duration = '7d' } = req.query;
 
-    const validDurations = ['24h', '7d', '30d', '6m', '1y'];
-    if (!validDurations.includes(duration)) {
+    if (!isValidDuration(duration)) {
       return res.status(400).json({ message: 'Invalid duration parameter' });
     }
 
-    const now = new Date();
-    let startDate;
+    const { startDate, endDate, isHourly } = getPeriodForDuration(duration);
 
-    switch (duration) {
-      case '24h':
-        startDate = new Date(now);
-        startDate.setHours(startDate.getHours() - 24);
-        break;
-      case '7d':
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 7);
-        break;
-      case '30d':
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 30);
-        break;
-      case '6m':
-        startDate = new Date(now);
-        startDate.setMonth(startDate.getMonth() - 6);
-        break;
-      case '1y':
-        startDate = new Date(now);
-        startDate.setFullYear(startDate.getFullYear() - 1);
-        break;
-      default:
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 7);
-    }
+    const stats = isHourly
+      ? await statsModel.getHourlyPipelineStatsForPeriod(startDate, endDate)
+      : await statsModel.getDailyPipelineStatsForPeriod(startDate, endDate);
 
-    let stats;
-    if (duration === '24h') {
-      // For 24h, use hourly stats
-      stats = await statsModel.getHourlyPipelineStatsForPeriod(startDate, now);
-    } else {
-      // For longer periods, use daily stats table
-      stats = await statsModel.getDailyPipelineStatsForPeriod(startDate, now);
-    }
-
-    // Format stats for the frontend
     const formattedStats = stats.map((stat) => ({
-      date: duration === '24h' ? stat.period_start : stat.date,
+      date: isHourly ? stat.period_start : stat.date,
       total: stat.total_pipelines,
       passed: stat.passed_pipelines,
       failed: stat.failed_pipelines,
@@ -239,58 +206,26 @@ const getJobTypeStats = async (req, res) => {
     const { jobTypeId } = req.params;
     const { duration = '7d' } = req.query;
 
-    const validDurations = ['24h', '7d', '30d', '6m', '1y'];
-    if (!validDurations.includes(duration)) {
+    if (!isValidDuration(duration)) {
       return res.status(400).json({ message: 'Invalid duration parameter' });
     }
 
-    const now = new Date();
-    let startDate;
+    const { startDate, endDate, isHourly } = getPeriodForDuration(duration);
 
-    switch (duration) {
-      case '24h':
-        startDate = new Date(now);
-        startDate.setHours(startDate.getHours() - 24);
-        break;
-      case '7d':
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 7);
-        break;
-      case '30d':
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 30);
-        break;
-      case '6m':
-        startDate = new Date(now);
-        startDate.setMonth(startDate.getMonth() - 6);
-        break;
-      case '1y':
-        startDate = new Date(now);
-        startDate.setFullYear(startDate.getFullYear() - 1);
-        break;
-      default:
-        startDate = new Date(now);
-        startDate.setDate(startDate.getDate() - 7);
-    }
+    const stats = isHourly
+      ? await statsModel.getHourlyJobTypeStatsForPeriod(
+          jobTypeId,
+          startDate,
+          endDate
+        )
+      : await statsModel.getDailyJobTypeStatsForPeriod(
+          jobTypeId,
+          startDate,
+          endDate
+        );
 
-    let stats;
-    if (duration === '24h') {
-      stats = await statsModel.getHourlyJobTypeStatsForPeriod(
-        jobTypeId,
-        startDate,
-        now
-      );
-    } else {
-      stats = await statsModel.getDailyJobTypeStatsForPeriod(
-        jobTypeId,
-        startDate,
-        now
-      );
-    }
-
-    // Format stats for the frontend
     const formattedStats = stats.map((stat) => ({
-      date: duration === '24h' ? stat.period_start : stat.date,
+      date: isHourly ? stat.period_start : stat.date,
       total: stat.total_jobs,
       passed: stat.passed_jobs,
       failed: stat.failed_jobs,
