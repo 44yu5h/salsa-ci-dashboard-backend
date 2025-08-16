@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
+import https from 'https';
+
 dotenv.config();
 
 const SALSA_API_BASE_URL =
@@ -11,6 +13,8 @@ const salsaApi = axios.create({
   headers: {
     'PRIVATE-TOKEN': SALSA_PRIVATE_ACCESS_TOKEN,
   },
+  timeout: 10000,
+  httpsAgent: new https.Agent({ keepAlive: true }),
 });
 
 export default salsaApi;
