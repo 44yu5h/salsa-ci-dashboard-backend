@@ -11,6 +11,7 @@ import startPipelineUpdateCron from './cron/pipelineUpdater.js';
 import startMergeRequestUpdateCron from './cron/mergeRequestUpdater.js';
 import startAllStatsCron from './cron/statsUpdater.js';
 import startPackageUpdateCron from './cron/packageUpdater.js';
+import ciRoute from './routes/ciConfigRoute.js';
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/job-types', jobTypesRoute);
 app.use('/packages', packagesRoute);
 app.use('/merge-requests', mergeRequestRoute);
 app.use('/stats', statsRoute);
+app.use('/ci-config', ciRoute);
 
 app.get('/', (_req, res) => {
   res.status(200).send('Server is functioning properly!');
