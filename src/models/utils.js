@@ -8,6 +8,19 @@ export const isValidDuration = (duration) =>
 export const getPeriodForDuration = (duration, now = new Date()) => {
   const endDate = new Date(now);
   const startDate = new Date(now);
+
+  // Temporarily adjust endDate to exclude the current hour or day and shift startDate accordingly
+  // This is because we insert stats for those at the end of the period (EOD/EOHour)
+  // Permanent fix would be to fetch stats for the current period in realtime,
+  // which is not yet implemented due to limitations of the free plan.
+  if (duration === '24h') {
+    endDate.setHours(endDate.getHours() - 1);
+    startDate.setHours(startDate.getHours() - 1);
+  } else {
+    endDate.setDate(endDate.getDate() - 1);
+    startDate.setDate(startDate.getDate() - 1);
+  }
+
   switch (duration) {
     case '24h':
       startDate.setHours(startDate.getHours() - 24);
