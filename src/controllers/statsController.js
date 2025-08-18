@@ -1,6 +1,10 @@
 import * as statsModel from '../models/statsModel.js';
 import * as defaults from '../constants/defaults.js';
-import { isValidDuration, getPeriodForDuration } from '../models/utils.js';
+import {
+  isValidDuration,
+  getPeriodForDuration,
+  buildTimeBuckets,
+} from '../models/utils.js';
 
 const processHourlyJobTypeStats = async () => {
   try {
@@ -187,12 +191,22 @@ const getPipelineStats = async (req, res) => {
       ? await statsModel.getHourlyPipelineStatsForPeriod(startDate, endDate)
       : await statsModel.getDailyPipelineStatsForPeriod(startDate, endDate);
 
-    const formattedStats = stats.map((stat) => ({
-      date: isHourly ? stat.period_start : stat.date,
-      total: stat.total_pipelines,
-      passed: stat.passed_pipelines,
-      failed: stat.failed_pipelines,
-    }));
+    // Build complete timeline and fill gaps
+    const buckets = buildTimeBuckets(startDate, endDate, isHourly);
+    const keyField = isHourly ? 'period_start' : 'date';
+    const rowMap = new Map(
+      stats.map((s) => [new Date(s[keyField]).getTime(), s])
+    );
+
+    const formattedStats = buckets.map((b) => {
+      const row = rowMap.get(b.getTime());
+      return {
+        date: b,
+        total: row ? row.total_pipelines : null,
+        passed: row ? row.passed_pipelines : null,
+        failed: row ? row.failed_pipelines : null,
+      };
+    });
 
     res.status(200).json(formattedStats);
   } catch (err) {
@@ -224,13 +238,23 @@ const getJobTypeStats = async (req, res) => {
           endDate
         );
 
-    const formattedStats = stats.map((stat) => ({
-      date: isHourly ? stat.period_start : stat.date,
-      total: stat.total_jobs,
-      passed: stat.passed_jobs,
-      failed: stat.failed_jobs,
-      duration: stat.avg_duration_seconds,
-    }));
+    // Build complete timeline and fill gaps
+    const buckets = buildTimeBuckets(startDate, endDate, isHourly);
+    const keyField = isHourly ? 'period_start' : 'date';
+    const rowMap = new Map(
+      stats.map((s) => [new Date(s[keyField]).getTime(), s])
+    );
+
+    const formattedStats = buckets.map((b) => {
+      const row = rowMap.get(b.getTime());
+      return {
+        date: b,
+        total: row ? row.total_jobs : null,
+        passed: row ? row.passed_jobs : null,
+        failed: row ? row.failed_jobs : null,
+        duration: row ? row.avg_duration_seconds : null,
+      };
+    });
 
     res.status(200).json(formattedStats);
   } catch (err) {

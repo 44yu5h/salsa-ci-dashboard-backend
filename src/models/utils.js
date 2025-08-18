@@ -31,6 +31,41 @@ export const getPeriodForDuration = (duration, now = new Date()) => {
   return { startDate, endDate, isHourly: duration === '24h' };
 };
 
+// Build full x timeline (no gaps) for hourly or daily data.
+// (start, end] - start exclusive, end is inclusive
+export const startOfHour = (d) => {
+  const x = new Date(d);
+  x.setMinutes(0, 0, 0);
+  return x;
+};
+export const startOfDay = (d) => {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+};
+export const buildTimeBuckets = (startDate, endDate, isHourly) => {
+  const end = isHourly ? startOfHour(endDate) : startOfDay(endDate);
+  const start = isHourly ? startOfHour(startDate) : startOfDay(startDate);
+
+  const buckets = [];
+  const cur = new Date(start);
+  // Shift by one unit so we get exactly 24 points for 24h and 7/30/etc for days
+  if (isHourly) {
+    cur.setHours(cur.getHours() + 1);
+    while (cur <= end) {
+      buckets.push(new Date(cur));
+      cur.setHours(cur.getHours() + 1);
+    }
+  } else {
+    cur.setDate(cur.getDate() + 1);
+    while (cur <= end) {
+      buckets.push(new Date(cur));
+      cur.setDate(cur.getDate() + 1);
+    }
+  }
+  return buckets;
+};
+
 // Return version (from latest tag) and maintainer (from debian/control)
 export const getLatestVersionAndMaintainer = async (projectId) => {
   try {
