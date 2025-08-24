@@ -132,6 +132,7 @@ export const calculateHourlyJobTypeStats = async (periodStart) => {
   const [rows] = await pool.query(
     `SELECT
       j.job_type_id,
+      jt.name AS job_type_name,
       COUNT(*) AS total_jobs,
       SUM(CASE WHEN j.status = 'success' THEN 1 ELSE 0 END) AS passed_jobs,
       SUM(CASE WHEN j.status = 'failed' THEN 1 ELSE 0 END) AS failed_jobs,
@@ -142,7 +143,7 @@ export const calculateHourlyJobTypeStats = async (periodStart) => {
       AND j.started_at < ?
       AND j.status IN ('success', 'failed')
       AND jt.origin = 'salsaci'
-    GROUP BY j.job_type_id`,
+    GROUP BY j.job_type_id, jt.name`,
     [periodStart, periodEnd]
   );
   return rows;

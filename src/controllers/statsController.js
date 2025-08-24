@@ -5,11 +5,17 @@ import {
   getPeriodForDuration,
   buildTimeBuckets,
 } from '../models/utils.js';
+import { sendMatrixAlert } from '../services/matrixNotifier.js';
+
+// Danger thresholds (percentage)
+const DANGER_THRESHOLD_JOB_TYPES = Number(process.env.DANGER_THRESHOLD_JOB_TYPES || 85);
+const DANGER_THRESHOLD_PIPELINES = Number(process.env.DANGER_THRESHOLD_PIPELINES || 85);
 
 const processHourlyJobTypeStats = async () => {
   try {
     const now = new Date();
     const allStats = [];
+    const hourlyAlerts = [];
 
     // Start with the current hour and go 24h back
     for (let i = 0; i < defaults.DEFAULT_MAX_DURATION_JOBS; i++) {
@@ -21,14 +27,34 @@ const processHourlyJobTypeStats = async () => {
         await statsModel.calculateHourlyJobTypeStats(periodStart);
 
       for (const stat of jobTypeStats) {
+        const total = Number(stat.total_jobs) || 0;
+        const passed = Number(stat.passed_jobs) || 0;
+        const failed = Number(stat.failed_jobs) || 0;
+
         allStats.push({
           period_start: periodStart,
           job_type_id: stat.job_type_id,
-          total_jobs: stat.total_jobs,
-          passed_jobs: stat.passed_jobs,
-          failed_jobs: stat.failed_jobs,
+          total_jobs: total,
+          passed_jobs: passed,
+          failed_jobs: failed,
           avg_duration_seconds: Math.round(stat.avg_duration_seconds || 0),
         });
+
+        // Only alert for the last hour
+        if (i === 0 && total > 0) {
+            const passRate = Math.round((passed / total) * 100);
+            if (passRate < DANGER_THRESHOLD_JOB_TYPES) {
+              hourlyAlerts.push({
+                id: stat.job_type_id,
+                name: stat.job_type_name || `Job Type #${stat.job_type_id}`,
+                time: periodStart,
+                total,
+                passed,
+                failed,
+                passRate,
+              });
+            }
+        }
       }
     }
 
@@ -42,6 +68,22 @@ const processHourlyJobTypeStats = async () => {
     // Insert all collected stats
     const insertCount = await statsModel.bulkInsertHourlyJobTypeStats(allStats);
     console.log(`Inserted/updated ${insertCount} hourly job type stats`);
+
+    // Send a single alert summarizing all failing job types for the last hour
+    if (hourlyAlerts.length > 0) {
+      const header = `Alert: Job types success rate below ${DANGER_THRESHOLD_JOB_TYPES}% in the last hour`;
+      const period = hourlyAlerts[0].time.toUTCString();
+      const lines = hourlyAlerts
+        .sort((a, b) => a.passRate - b.passRate)
+        .map((a) =>`- ${a.name}: ${a.passRate}%`)
+        .join('\n');
+      const message = `${header}\n${period}\n${lines}`;
+      try {
+        await sendMatrixAlert({ message });
+      } catch (e) {
+        console.error('Failed to send Matrix alert for job types:', e?.message || e);
+      }
+    }
 
     return true;
   } catch (err) {
@@ -102,16 +144,35 @@ const processHourlyPipelineStats = async () => {
       const pipelineStats =
         await statsModel.calculateHourlyPipelineStats(periodStart);
 
-      if (pipelineStats.total_pipelines) {
+      const total = Number(pipelineStats.total_pipelines) || 0;
+      const passed = Number(pipelineStats.passed_pipelines) || 0;
+      const failed = Number(pipelineStats.failed_pipelines) || 0;
+
+      if (total) {
         stats.push({
           period_start: new Date(periodStart),
-          total_pipelines: pipelineStats.total_pipelines || 0,
-          passed_pipelines: pipelineStats.passed_pipelines || 0,
-          failed_pipelines: pipelineStats.failed_pipelines || 0,
+          total_pipelines: total,
+          passed_pipelines: passed,
+          failed_pipelines: failed,
           avg_duration_seconds: Math.round(
             pipelineStats.avg_duration_seconds || 0
           ),
         });
+
+        // Alert for the last hour
+        if (i === 0 && total > 0) {
+          const passRate = Math.round((passed / total) * 100);
+          if (passRate < DANGER_THRESHOLD_PIPELINES) {
+            const header = `Alert: Pipeline success rate below ${DANGER_THRESHOLD_PIPELINES}% in the last hour`;
+            const period = periodStart.toUTCString();
+            const message = `${header}\n${period}\n- Pipelines: ${passRate}% (${passed}/${total} passed)`;
+            try {
+              await sendMatrixAlert({ message });
+            } catch (e) {
+              console.error('Failed to send Matrix alert for pipelines:', e);
+            }
+          }
+        }
       }
     }
 
