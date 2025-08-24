@@ -10,6 +10,7 @@ import { sendMatrixAlert } from '../services/matrixNotifier.js';
 // Danger thresholds (percentage)
 const DANGER_THRESHOLD_JOB_TYPES = Number(process.env.DANGER_THRESHOLD_JOB_TYPES || 85);
 const DANGER_THRESHOLD_PIPELINES = Number(process.env.DANGER_THRESHOLD_PIPELINES || 85);
+const ALERT_ICON = '🔴';
 
 const processHourlyJobTypeStats = async () => {
   try {
@@ -71,7 +72,7 @@ const processHourlyJobTypeStats = async () => {
 
     // Send a single alert summarizing all failing job types for the last hour
     if (hourlyAlerts.length > 0) {
-      const header = `Alert: Job types success rate below ${DANGER_THRESHOLD_JOB_TYPES}% in the last hour`;
+      const header = `${ALERT_ICON} Job types success rate below ${DANGER_THRESHOLD_JOB_TYPES}% in the last hour`;
       const period = hourlyAlerts[0].time.toUTCString();
       const lines = hourlyAlerts
         .sort((a, b) => a.passRate - b.passRate)
@@ -163,7 +164,7 @@ const processHourlyPipelineStats = async () => {
         if (i === 0 && total > 0) {
           const passRate = Math.round((passed / total) * 100);
           if (passRate < DANGER_THRESHOLD_PIPELINES) {
-            const header = `Alert: Pipeline success rate below ${DANGER_THRESHOLD_PIPELINES}% in the last hour`;
+            const header = `${ALERT_ICON} Pipeline success rate below ${DANGER_THRESHOLD_PIPELINES}% in the last hour`;
             const period = periodStart.toUTCString();
             const message = `${header}\n${period}\n- Pipelines: ${passRate}% (${passed}/${total} passed)`;
             try {
