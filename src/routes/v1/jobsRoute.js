@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import jobsController from '../controllers/jobsController.js';
+import jobsController from '../../controllers/jobsController.js';
 
 // Get jobs by pipeline ID
 router.get('/pipeline/:pipelineId', jobsController.getJobsByPipeline);

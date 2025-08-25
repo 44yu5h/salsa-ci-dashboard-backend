@@ -1,5 +1,5 @@
 import express from 'express';
-import ciController from '../controllers/ciConfigController.js';
+import ciController from '../../controllers/ciConfigController.js';
 
 const router = express.Router();
 

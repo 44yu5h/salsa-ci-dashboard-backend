@@ -1,17 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 
-import pipelinesRoute from './routes/pipelinesRoute.js';
-import jobsRoute from './routes/jobsRoute.js';
-import jobTypesRoute from './routes/jobTypesRoute.js';
-import packagesRoute from './routes/packagesRoute.js';
-import mergeRequestRoute from './routes/mergeRequestRoute.js';
-import statsRoute from './routes/statsRoute.js';
+import apiRoutes from './routes/api.js';
 import startPipelineUpdateCron from './cron/pipelineUpdater.js';
 import startMergeRequestUpdateCron from './cron/mergeRequestUpdater.js';
 import startAllStatsCron from './cron/statsUpdater.js';
 import startPackageUpdateCron from './cron/packageUpdater.js';
-import ciRoute from './routes/ciConfigRoute.js';
 
 const app = express();
 
@@ -28,17 +22,8 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 
-app.use('/pipelines', pipelinesRoute);
-app.use('/jobs', jobsRoute);
-app.use('/job-types', jobTypesRoute);
-app.use('/packages', packagesRoute);
-app.use('/merge-requests', mergeRequestRoute);
-app.use('/stats', statsRoute);
-app.use('/ci-config', ciRoute);
-
-app.get('/', (_req, res) => {
-  res.status(200).send('Server is functioning properly!');
-});
+// Use versioned API routes
+app.use('/api', apiRoutes);
 
 // Start the cron job(s)
 startPipelineUpdateCron();

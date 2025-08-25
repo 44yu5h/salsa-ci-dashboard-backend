@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import pipelinesController from '../controllers/pipelinesController.js';
+import pipelinesController from '../../controllers/pipelinesController.js';
 
 // register a new Salsa pipeline
 router.put('/', pipelinesController.registerPipeline);

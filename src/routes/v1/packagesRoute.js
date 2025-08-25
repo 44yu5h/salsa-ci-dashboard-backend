@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import packagesController from '../controllers/packagesController.js';
+import packagesController from '../../controllers/packagesController.js';
 
 // Get all packages with pagination
 router.get('/all', packagesController.getAllPackages);

@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import mergeRequestController from '../controllers/mergeRequestController.js';
+import mergeRequestController from '../../controllers/mergeRequestController.js';
 
 // Get all merge requests as JSON
 router.get('/json', mergeRequestController.getMergeRequestsJson);

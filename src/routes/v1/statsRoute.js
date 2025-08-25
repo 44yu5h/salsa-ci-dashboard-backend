@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import statsController from '../controllers/statsController.js';
+import statsController from '../../controllers/statsController.js';
 
 // Get dashboard statistics
 router.get('/dashboard', statsController.getDashboardStats);
