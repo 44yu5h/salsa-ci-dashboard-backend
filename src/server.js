@@ -10,6 +10,7 @@ import startPackageUpdateCron from './cron/packageUpdater.js';
 const app = express();
 
 const PORT = process.env.PORT || 8080;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Ensure server runs in UTC for consistent timestamps
 process.env.TZ = 'UTC';
@@ -23,7 +24,9 @@ app.use(cors(corsOption));
 app.use(express.json());
 
 // Use versioned API routes
-app.use('/api', apiRoutes);
+// Use '/api' prefix in development, root '/' in production
+// as nginx handles the /api prefix for salsa-status.debian.net
+app.use(NODE_ENV === 'production' ? '/' : '/api', apiRoutes);
 
 // Start the cron job(s)
 startPipelineUpdateCron();
@@ -32,5 +35,5 @@ startAllStatsCron();
 startPackageUpdateCron();
 
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT} in ${NODE_ENV} mode`);
 });
