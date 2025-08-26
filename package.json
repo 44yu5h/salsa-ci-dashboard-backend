@@ -4,8 +4,7 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "start:prod": "NODE_ENV=production node src/server.js",
+    "start": "node server",
     "dev": "nodemon --ignore 'data' server",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
