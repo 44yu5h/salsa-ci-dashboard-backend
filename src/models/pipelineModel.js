@@ -10,11 +10,13 @@ export const getByPipelineId = async (pipelineId) => {
   return rows[0];
 };
 
-// Get pipelines by status
-export const getByStatus = async (status) => {
-  const [rows] = await pool.query('SELECT * FROM pipelines WHERE status = ?', [
-    status,
-  ]);
+// Get pipelines by multiple statuses
+export const getByStatuses = async (statuses) => {
+  const placeholders = statuses.map(() => '?').join(',');
+  const [rows] = await pool.query(
+    `SELECT * FROM pipelines WHERE status IN (${placeholders})`,
+    statuses
+  );
   return rows;
 };
 

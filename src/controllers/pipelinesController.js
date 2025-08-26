@@ -118,8 +118,9 @@ const updatePipelineStatus = async (req, res) => {
 const checkPendingPipelines = async () => {
   try {
     console.log('Starting pipeline status check at ', new Date().toISOString());
-    // Get all pipelines with 'created' status only
-    const pendingPipelines = await pipelineModel.getByStatus('created');
+    // Get all pipelines with non-final statuses
+    const pendingStatuses = ['created', 'pending', 'running'];
+    const pendingPipelines = await pipelineModel.getByStatuses(pendingStatuses);
     console.log(`Found ${pendingPipelines.length} pending pipelines to check`);
 
     for (const pipeline of pendingPipelines) {
@@ -133,23 +134,8 @@ const checkPendingPipelines = async () => {
         );
         const pipelineData = response.data;
 
-        // If the pipeline has finished with a final status, fetch and process jobs
-        if (
-          ['success', 'failed', 'canceled', 'skipped', 'manual'].includes(
-            pipelineData.status
-          )
-        ) {
-          if (
-            (await packageModel.getByProjectId(pipeline.project_id)) === null
-          ) {
-            console.log(
-              `Project #${pipeline.project_id} not found, fetching details...`
-            );
-            await packageModel.fetchAndStorePackageDetails(pipeline.project_id);
-          } else {
-            // TODO update package details
-          }
-
+        // Check if status has changed
+        if (pipelineData.status !== pipeline.status) {
           // Update pipeline with details
           await pipelineModel.updatePipeline(pipeline.id, {
             status: pipelineData.status,
@@ -161,16 +147,31 @@ const checkPendingPipelines = async () => {
             sha: pipelineData.sha,
             user_id: pipelineData.user?.id || null,
           });
-          console.log(
-            `Updated pipeline #${pipeline.pipeline_id}, status: ${pipelineData.status}`
-          );
 
-          // Use the updateJobsForPipeline function from jobsController
-          await jobsController.updateJobsForPipeline(
-            pipeline.project_id,
-            pipeline.pipeline_id
-          );
-          // = true
+          // If the pipeline has finished with a final status, fetch and process jobs
+          if (
+            ['success', 'failed', 'canceled', 'skipped', 'manual'].includes(
+              pipelineData.status
+            )
+          ) {
+            if (
+              (await packageModel.getByProjectId(pipeline.project_id)) === null
+            ) {
+              console.log(
+                `Project #${pipeline.project_id} not found, fetching details...`
+              );
+              await packageModel.fetchAndStorePackageDetails(
+                pipeline.project_id
+              );
+            } else {
+              // TODO update package details
+            }
+
+            await jobsController.updateJobsForPipeline(
+              pipeline.project_id,
+              pipeline.pipeline_id
+            );
+          }
         }
       } catch (err) {
         if (err.response && err.response.status === 404) {
