@@ -21,10 +21,16 @@ const registerPipeline = async (req, res) => {
       .json({ message: 'Invalid request data', details: error.details });
 
   try {
-    // Extract fields from req body
-    const pipelineId = req.body.id;
-    const projectId = req.body.project_id;
-    const created_at = req.body.created_at;
+    const { id: pipelineId, project_id: projectId, created_at } = req.body;
+
+    // Check if pipeline already exists - retries of the same pipeline
+    const existingPipeline = await pipelineModel.getByPipelineId(pipelineId);
+    if (existingPipeline) {
+      return res.status(409).json({
+        message: `Pipeline #${pipelineId} already registered`,
+        pipelineId: existingPipeline.id,
+      });
+    }
 
     // Fetch and store package details
     try {
@@ -41,26 +47,14 @@ const registerPipeline = async (req, res) => {
       });
     }
 
-    // Insert with minimal data, status is always "created" initially
-    const pipelineData = {
-      pipelineId,
-      projectId,
-      created_at,
-    };
-
-    // Check if pipeline already exists - retries of the same pipeline
-    const existingPipeline = await pipelineModel.getByPipelineId(pipelineId);
-    if (existingPipeline) {
-      return res.status(409).json({
-        message: `Pipeline #${pipelineId} already registered`,
-        pipelineId: existingPipeline.id,
-      });
-    }
+    // Fetch full pipeline details from Salsa
+    const response = await salsaApi.get(
+      `/projects/${projectId}/pipelines/${pipelineId}`
+    );
+    const pipelineData = response.data;
 
     await pipelineModel.create(pipelineData);
-    console.log(
-      `New pipeline registered: ${pipelineId}, will fetch details later via cron`
-    );
+    console.log(`New pipeline registered: #${pipelineId}`);
 
     res.status(201).json({
       message: `Pipeline #${pipelineId} registered successfully!`,

@@ -22,10 +22,38 @@ export const getByStatuses = async (statuses) => {
 
 // Register/create a new pipeline
 export const create = async (pipelineData) => {
-  const { pipelineId, projectId, created_at } = pipelineData;
+  const {
+    id: pipelineId,
+    project_id: projectId,
+    status,
+    created_at,
+    started_at,
+    finished_at,
+    duration,
+    web_url,
+    ref,
+    sha,
+    user,
+  } = pipelineData;
+
   const [result] = await pool.query(
-    'INSERT INTO pipelines (pipeline_id, project_id, created_at, status) VALUES (?, ?, ?, ?)',
-    [pipelineId, projectId, created_at, 'created']
+    `INSERT INTO pipelines
+     (pipeline_id, project_id, status, created_at, started_at, finished_at,
+      duration, web_url, ref, sha, user_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      pipelineId,
+      projectId,
+      status,
+      created_at,
+      started_at,
+      finished_at,
+      duration,
+      web_url,
+      ref,
+      sha,
+      user?.id || null,
+    ]
   );
   return result.insertId;
 };
