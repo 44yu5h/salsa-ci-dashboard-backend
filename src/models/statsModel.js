@@ -230,7 +230,8 @@ export const getDashboardStats = async () => {
         (SELECT COUNT(*) FROM pipelines) AS pipelinesCount,
         (SELECT COUNT(*) FROM packages) AS packagesCount,
         (SELECT COUNT(*) FROM pipelines WHERE status = 'success') AS successfulPipelines,
-        (SELECT COUNT(*) FROM pipelines WHERE status IN ('success', 'failed')) AS totalCompletedPipelines
+        (SELECT COUNT(*) FROM pipelines WHERE status IN ('success', 'failed')) AS totalCompletedPipelines,
+        (SELECT COALESCE(SUM(duration), 0) FROM pipelines WHERE status IN ('success', 'failed')) AS totalPipelineDurationSeconds
     `);
 
   // Success rate (only for completed pipelines)
@@ -242,8 +243,12 @@ export const getDashboardStats = async () => {
         )
       : 0;
 
+  // Compute total CI minutes from pipeline durations
+  stats.ciMinutes = Math.round((stats.totalPipelineDurationSeconds || 0) / 60);
+
   // No need in frontend
   delete stats.totalCompletedPipelines;
+  delete stats.totalPipelineDurationSeconds;
 
   return stats;
 };
